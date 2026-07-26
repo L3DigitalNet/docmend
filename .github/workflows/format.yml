@@ -9,7 +9,7 @@ on:
 
 jobs:
   format:
-    uses: L3DigitalNet/project-standards/.github/workflows/format.yml@v5
+    uses: L3DigitalNet/project-standards/.github/workflows/format.yml@v5.0.2
     with:
       prettier: true
       globs: "**/*.md\n**/*.json\n**/*.jsonc\n**/*.yml\n**/*.yaml"

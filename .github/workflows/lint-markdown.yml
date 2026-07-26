@@ -9,7 +9,7 @@ on:
 
 jobs:
   lint-markdown:
-    uses: L3DigitalNet/project-standards/.github/workflows/lint-markdown.yml@v5
+    uses: L3DigitalNet/project-standards/.github/workflows/lint-markdown.yml@v5.0.2
     with:
       markdownlint: true
       globs: "**/*.md"
