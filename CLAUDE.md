@@ -1,10 +1,5 @@
 # Claude Code
 
-<!-- markdownlint-disable-file MD037 MD049 -->
-<!-- The project-standards managed instruction blocks below carry literal glob patterns
-     that this repo's strict MD049/MD037 rules flag and are control-plane-owned (cannot be
-     edited; reconcile reverts). The two emphasis rules are disabled file-wide. -->
-
 @AGENTS.md
 
 <!-- prettier-ignore-start -->
@@ -28,8 +23,9 @@ Use the repo-local `agent-handoff` skill at session startup and closeout. Do not
 Prettier owns physical formatting and markdownlint owns Markdown structure. Do not add overlapping tools.
 
 Enabled checks: format, lint.
-Markdown scope: **/*.md.
-Structured-config scope: **/*.json, **/*.jsonc, **/*.yml, **/*.yaml.
+Markdown scope: `**/*.md`.
+Structured-config scope: `**/*.json`, `**/*.jsonc`, `**/*.yml`, `**/*.yaml`.
+Lint additionally skips generated directories: `.pytest_cache/**`, `.ruff_cache/**`, `.venv/**`, `node_modules/**`.
 
 Run the enabled checks before claiming completion.
 <!-- markdownlint-enable MD025 -->

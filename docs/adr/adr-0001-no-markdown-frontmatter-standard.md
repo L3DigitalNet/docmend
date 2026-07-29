@@ -2,11 +2,11 @@
 schema_version: '1.1'
 id: 'adr-0001-docmend-do-not-adopt-markdown-frontmatter-standard'
 title: 'ADR 0001: Do not adopt the Markdown Frontmatter Standard'
-description: "docmend adopts four Project Standards but deliberately excludes the Markdown Frontmatter Standard, whose canonical schema conflicts with docmend's own frontmatter contracts."
+description: "docmend adopts five Project Standards but deliberately excludes the Markdown Frontmatter Standard, whose canonical schema conflicts with docmend's own frontmatter contracts."
 doc_type: 'adr'
 status: 'accepted'
 created: '2026-07-05'
-updated: '2026-07-05'
+updated: '2026-07-29'
 reviewed: null
 owner: 'chrisdpurcell'
 consumer: 'agent'
@@ -17,7 +17,7 @@ tags:
   - 'deviation'
 aliases: []
 related:
-  - '.project-standards.yml'
+  - '.standards/config.toml'
   - 'docs/specs/docmend.md'
 supersedes: []
 superseded_by: null
@@ -36,7 +36,7 @@ project:
 
 ## Context and Problem Statement
 
-docmend adopts four standards from [Project Standards](https://github.com/L3DigitalNet/project-standards): Python Tooling SSOT, Markdown Tooling, Project Specification, and ADR. The ADR Standard's adoption guide names the **Markdown Frontmatter Standard** as a prerequisite ("Adopt the Frontmatter Standard first — ADR enforcement rides on top of it"), and the Project Specification Standard documents how its own frontmatter must be partitioned away from the canonical frontmatter validator.
+docmend adopts five standards from [Project Standards](https://github.com/L3DigitalNet/project-standards): Python Tooling SSOT, Markdown Tooling, Project Specification, ADR, and Agent Handoff. The Markdown Frontmatter Standard remains independently selectable; the ADR and Project Specification packages support this repository's deliberately unvalidated documentation-frontmatter policy.
 
 Should docmend also adopt the Markdown Frontmatter Standard so that ADR and other managed Markdown carry CI-validated canonical frontmatter?
 
@@ -60,15 +60,15 @@ Chosen option: **"Do not adopt the Markdown Frontmatter Standard"**, because doc
 
 - Good, because docmend's product frontmatter schema and the Pandoc spec metadata remain the uncontested authority over their files — no second validator competes for them.
 - Good, because glob-partitioning fragility (canonical vs. spec vs. product frontmatter) is avoided entirely.
-- Bad, because **ADR frontmatter is not CI-validated** in this repo. The `markdown.adr.require_sections` check "rides the same frontmatter workflow," which is not installed, so it would be inert; it is therefore omitted from `.project-standards.yml`. ADRs are authored from `docs/adr/adr.template.md` and kept consistent **by convention**.
+- Bad, because **ADR frontmatter is not CI-validated** in this repo. ADR section enforcement is also deliberately disabled with `require_sections = false`. ADRs are authored from `docs/adr/adr.template.md` and kept consistent **by convention**.
 - Bad, because other managed Markdown (docs/) likewise gets no canonical frontmatter validation. Markdown **body** linting/formatting is unaffected — the Markdown Tooling Standard (markdownlint + Prettier) is fully adopted and does cover these files.
 
 ### Confirmation
 
-Compliance is confirmed by inspection of `.project-standards.yml`: it declares `python_tooling`, `markdown_tooling`, and `spec` blocks and carries **no** `markdown.frontmatter` block and **no** `markdown.adr` block. This ADR is the recorded exception (per the standards' §20 exceptions process) that authorizes those omissions.
+Compliance is confirmed by inspection of `.standards/config.toml`: it enables the five selected packages and carries no `[standards.markdown-frontmatter]` block. The ADR package sets `require_sections = false`. This ADR records the repository's deliberate non-adoption.
 
 ## More Information
 
-- Adopted standards and their wiring: [`.project-standards.yml`](../../.project-standards.yml).
-- The prerequisite relationship this ADR opts out of: the [ADR Standard adoption guide](https://github.com/L3DigitalNet/project-standards/blob/v4/standards/adr/adopt.md) §1 and the [Project Specification Standard adoption guide](https://github.com/L3DigitalNet/project-standards/blob/v4/standards/project-spec/adopt.md) §1.
+- Adopted standards and their wiring: [`.standards/config.toml`](../../.standards/config.toml).
+- Current package guidance: the [ADR 1.3 adoption guide](https://github.com/L3DigitalNet/project-standards/blob/v5.11.0/standards/adr/versions/1.3/adopt.md) and [Project Specification 1.5 adoption guide](https://github.com/L3DigitalNet/project-standards/blob/v5.11.0/standards/project-spec/versions/1.5/adopt.md).
 - Revisit this decision if docmend's product frontmatter and the canonical schema converge, or if a per-directory frontmatter-schema selection mechanism is added to the standard.
