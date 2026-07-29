@@ -8,7 +8,7 @@ on:
 
 jobs:
   validate-specs:
-    uses: L3DigitalNet/project-standards/.github/workflows/validate-specs.yml@v5
+    uses: L3DigitalNet/project-standards/.github/workflows/validate-specs.yml@v5.7.0
     with:
       standards-ref: "v5"
       strict-lint: false # set true to also fail CI on lint warnings
