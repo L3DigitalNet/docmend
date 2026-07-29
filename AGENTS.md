@@ -1,12 +1,5 @@
 # Agents
 
-<!-- markdownlint-disable-file MD037 MD049 -->
-<!-- The project-standards managed instruction blocks appended below contain literal
-     glob patterns (e.g. the markdown/structured-config scopes) that this repo's strict
-     MD049=underscore / MD037 rules flag as emphasis. Those blocks disable only MD025 and
-     are control-plane-owned (reconcile reverts edits), so the two emphasis rules are
-     disabled file-wide here. Reported upstream to project-standards. -->
-
 **Session state:** Agent Handoff SessionStart injects `docs/handoff/state.md`; do not reread it when injected. Then use this file and `docs/handoff/conventions.md`.
 
 **Full conventions reference:** [`docs/handoff/conventions.md`](docs/handoff/conventions.md) - LLM-targeted pattern library. Check it before adding persistent patterns.
@@ -59,8 +52,9 @@ Use the repo-local `agent-handoff` skill at session startup and closeout. Do not
 Prettier owns physical formatting and markdownlint owns Markdown structure. Do not add overlapping tools.
 
 Enabled checks: format, lint.
-Markdown scope: **/*.md.
-Structured-config scope: **/*.json, **/*.jsonc, **/*.yml, **/*.yaml.
+Markdown scope: `**/*.md`.
+Structured-config scope: `**/*.json`, `**/*.jsonc`, `**/*.yml`, `**/*.yaml`.
+Lint additionally skips generated directories: `.pytest_cache/**`, `.ruff_cache/**`, `.venv/**`, `node_modules/**`.
 
 Run the enabled checks before claiming completion.
 <!-- markdownlint-enable MD025 -->

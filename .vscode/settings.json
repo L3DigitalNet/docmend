@@ -32,7 +32,7 @@
 		"**/__pycache__": true,
 		"**/.pytest_cache": true,
 		"**/.ruff_cache": true,
-		"**/.mypy_cache": true,
+
 		"**/.coverage": true
 	},
 	"python.analysis.typeCheckingMode": "off"

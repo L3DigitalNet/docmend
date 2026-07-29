@@ -9,6 +9,8 @@ on:
 
 jobs:
   format:
+    permissions:
+      contents: read
     uses: L3DigitalNet/project-standards/.github/workflows/format.yml@v5
     with:
       prettier: true

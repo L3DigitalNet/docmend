@@ -9,7 +9,9 @@ on:
 
 jobs:
   lint-markdown:
+    permissions:
+      contents: read
     uses: L3DigitalNet/project-standards/.github/workflows/lint-markdown.yml@v5
     with:
       markdownlint: true
-      globs: "**/*.md"
+      globs: "**/*.md\n!.pytest_cache/**\n!.ruff_cache/**\n!.venv/**\n!node_modules/**"
