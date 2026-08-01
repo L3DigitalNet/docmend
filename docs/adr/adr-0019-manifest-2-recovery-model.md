@@ -4,7 +4,7 @@ id: 'adr-0019-docmend-manifest-2-recovery-model'
 title: 'ADR 0019: Manifest 2.0 recovery model'
 description: 'Manifest 2.0 replaces per-record trust with a validated set model: a header envelope anchoring run, root, plan, and backup-store facts; hash-linked manifest and attempt chains; intent-before-mutation journaling for every mutation kind including restore inverses; durable object identities in intent records; and one lifecycle reducer with a complete crash-state adjudication table shared by resume, restore, and verify.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-10'
 updated: '2026-07-11'
 reviewed: null

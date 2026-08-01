@@ -4,7 +4,7 @@ id: 'adr-0016-docmend-mechanical-transform-boundary'
 title: 'ADR 0016: The mechanical-transform boundary — file-type dispatch, content-preservation invariant, tab semantics'
 description: 'Consolidated record of what "mechanical" means at its edges: HTML/markup files are in default scope for encoding + EOL normalization only (no whitespace transforms, no renames); v1 mechanical transforms carry a hard content-preservation invariant (non-whitespace character count never decreases — the exact, threshold-free form of EC-005) with a forward-looking shrink-ratio knob; and tab normalization means leading-indentation tabs to spaces only, interior tabs untouched. Bundles RQ-025/RQ-030/RQ-031, which share one reversal surface: the transform dispatch layer.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-06'
 updated: '2026-07-06'
 reviewed: null

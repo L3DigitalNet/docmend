@@ -4,7 +4,7 @@ Sequential index of docmend's Architecture Decision Records. See [README.md](REA
 
 | ADR | Title | Status | Date | Sources |
 | --- | --- | --- | --- | --- |
-| [0001](adr-0001-no-markdown-frontmatter-standard.md) | Do not adopt the Markdown Frontmatter Standard | accepted | 2026-07-05 | D-008 |
+| [0001](adr-0001-no-markdown-frontmatter-standard.md) | Do not adopt the Markdown Frontmatter Standard | superseded by [0023](adr-0023-adopt-markdown-frontmatter-for-adrs.md) | 2026-07-05 | D-008 |
 | [0002](adr-0002-layered-pipeline-isolated-writer.md) | Layered pipeline with an isolated writer | accepted | 2026-07-05 | D-003, D-006 |
 | [0003](adr-0003-in-place-mutation-output-model.md) | In-place mutation as the v1 output model | accepted | 2026-07-05 | RQ-013, D-004 |
 | [0004](adr-0004-apply-safety-gate-and-preservation.md) | Apply safety gate and preservation posture | accepted | 2026-07-05 | RQ-005, RQ-007 |
@@ -26,7 +26,8 @@ Sequential index of docmend's Architecture Decision Records. See [README.md](REA
 | [0020](adr-0020-commit-boundary-object-identity.md) | Commit-boundary object identity | accepted | 2026-07-10 | 2026-07-10 review DMR-06/07 |
 | [0021](adr-0021-artifact-destination-guard.md) | Artifact destination guard | accepted | 2026-07-10 | 2026-07-10 review DMR-02 |
 | [0022](adr-0022-sequential-million-file-scale-contract.md) | Sequential million-file scale contract | accepted | 2026-07-11 | RQ-037; DMR-08 |
+| [0023](adr-0023-adopt-markdown-frontmatter-for-adrs.md) | Adopt Markdown Frontmatter for ADRs | accepted | 2026-08-01 | D-008; supersedes 0001 |
 
 ## Candidates not yet written
 
-Tracked with scoring and rationale in [adr-backlog.md](adr-backlog.md): all candidates from both review passes (2026-07-05 over D-001..009/RQ-001..023; 2026-07-06 over RQ-024..033) are now written up. ADR 0022 records the later DMR-08/OQ-037 scale decision and supersedes ADR 0007. The only remaining candidates are those **deliberately deferred until their downstream work is scheduled** — chiefly RQ-023's review-artifact exposure ADR (blocked on WH-002/WH-005) — plus the items in the backlog's "Deliberately not ADRs" table.
+Tracked with scoring and rationale in [adr-backlog.md](adr-backlog.md): all candidates from both review passes (2026-07-05 over D-001..009/RQ-001..023; 2026-07-06 over RQ-024..033) are now written up. ADR 0022 records the later DMR-08/OQ-037 scale decision and supersedes ADR 0007; ADR 0023 records the later standards-selection decision and supersedes ADR 0001. The only remaining candidates are those **deliberately deferred until their downstream work is scheduled** — chiefly RQ-023's review-artifact exposure ADR (blocked on WH-002/WH-005) — plus the items in the backlog's "Deliberately not ADRs" table.

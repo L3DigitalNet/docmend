@@ -21,7 +21,7 @@ Read [`docs/specs/docmend.md`](docs/specs/docmend.md) (SPEC-VHHB, `full` profile
 ## Non-Negotiables
 
 - This repo is public — see conventions #6 before adding any file, fixture, or doc: never real library documents, paths, or personal content.
-- Four Project Standards are adopted (python-tooling, markdown-tooling, project-spec, adr), managed via the V5 control plane (`.standards/`) — conventions #1-#5 and #8 are their operational how-to. The Markdown Frontmatter Standard is deliberately **not** adopted (ADR-0001) — see conventions #7 for the product-vs-repo-doc frontmatter distinction this creates.
+- Seven Project Standards packages are adopted (adr, agent-handoff, cli-documentation, markdown-frontmatter, markdown-tooling, project-spec, and python-tooling), managed via the V5 control plane (`.standards/`) — conventions #1-#5 and #8 are their operational how-to. Markdown Frontmatter is scoped only to ADRs (ADR-0023); see conventions #7 for the product, specification, and ADR frontmatter boundaries.
 - Never hand-edit a standard-owned file to bypass a check (conventions #8).
 
 ## Review Orchestrator Note

@@ -2,9 +2,9 @@
 schema_version = "1.0"
 catalog = "5"
 
-# require_sections stays false: docmend keeps ADRs consistent by convention (authored
-# from docs/adr/adr.template.md), and deliberately does not adopt Markdown Frontmatter
-# (ADR-0001), so MADR-section enforcement is intentionally not imposed.
+# require_sections stays false: docmend keeps ADR bodies consistent by convention
+# (authored from docs/adr/adr.template.md), so MADR-section enforcement remains
+# intentionally separate from the ADR-only frontmatter validation below.
 [standards.adr]
 enabled = true
 version = "latest"
@@ -14,6 +14,18 @@ config = { contract_version = "1.0", require_sections = false }
 enabled = true
 version = "latest"
 config = { contract_version = "1.0", harnesses = ["claude-code", "codex"], startup = "automatic" }
+
+[standards.cli-documentation]
+enabled = true
+version = "latest"
+config = { contract_version = "1.0", profile = "packaged", usage_ownership = "managed", command_name = "docmend", ci = { enabled = false } }
+
+# This corpus is deliberately disjoint from the Project Spec package and from
+# docmend's product-output frontmatter contract.
+[standards.markdown-frontmatter]
+enabled = true
+version = "latest"
+config = { contract_version = "1.1", workflow_mode = "caller", workflow_ownership = "managed", schema = "markdown-frontmatter", required = true, include = ["docs/adr/**/*.md"], exclude = ["docs/adr/README.md", "docs/adr/adr-backlog.md", "docs/adr/adr.template.md", "docs/adr/index.md"], references = { enabled = false } }
 
 [standards.markdown-tooling]
 enabled = true

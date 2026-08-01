@@ -4,7 +4,7 @@ id: 'adr-0022-docmend-sequential-million-file-scale-contract'
 title: 'ADR 0022: Sequential million-file scale contract'
 description: 'docmend v2.0.0 supports sequential execution from one through 1,000,000 files, removes the inert parallel configuration surface, adopts plan schema 2.0, and reopens concurrency only after accepted evidence shows the sequential workflow exceeds 12 hours.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-11'
 updated: '2026-07-12'
 reviewed: null

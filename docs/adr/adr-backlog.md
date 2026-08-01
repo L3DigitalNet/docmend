@@ -8,7 +8,7 @@
 
 | ADR | Title | Tier | Sources | Status |
 | --- | --- | --- | --- | --- |
-| 0001 | Do not adopt the Markdown Frontmatter Standard | — | D-008 | ✅ accepted |
+| 0001 | Do not adopt the Markdown Frontmatter Standard | — | D-008 | ♻️ superseded by 0023 |
 | 0002 | Layered pipeline with an isolated writer | 🔴 1 | D-003, D-006 | ✅ accepted |
 | 0003 | In-place mutation + atomic-replace output model | 🔴 1 | RQ-013 ⚑, D-004 | ✅ accepted |
 | 0004 | Apply safety gate + preservation posture | 🔴 1 | RQ-005 ⚑, RQ-007 | ✅ accepted |
@@ -30,6 +30,7 @@
 | 0020 | Commit-boundary object identity | 🔴 1 | 2026-07-10 comprehensive review DMR-06/07 (safety-core design) | ✅ accepted |
 | 0021 | Artifact destination guard | 🟡 2 | 2026-07-10 comprehensive review DMR-02 (safety-core design) | ✅ accepted |
 | 0022 | Sequential million-file scale contract | 🔴 1 | RQ-037, DMR-08 | ✅ accepted; supersedes 0007 |
+| 0023 | Adopt Markdown Frontmatter for ADRs | — | D-008, standards selection | ✅ accepted; supersedes 0001 |
 
 ## Tier 1 — write now (foundational; hard to reverse)
 

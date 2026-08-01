@@ -4,7 +4,7 @@ id: 'adr-0002-docmend-layered-pipeline-isolated-writer'
 title: 'ADR 0002: Layered pipeline with an isolated writer'
 description: 'docmend is structured as a layered pipeline — discovery, planning, pure transforms, an isolated writer, and verification — with an explicit reviewable plan artifact between planning and execution, rather than a monolithic convert-in-place script.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-05'
 updated: '2026-07-06'
 reviewed: null

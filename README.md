@@ -6,6 +6,8 @@ Python tool to normalize, fix, convert, manage, and maintain large libraries of 
 
 ## Commands
 
+The canonical option-by-option reference is [`docs/usage.md`](docs/usage.md); this section is the task-oriented overview.
+
 All commands work on a single file as well as a directory tree — the pipeline scales down without extra setup. Run artifacts (inventory, plan, report, manifest, log) default into `./.docmend/` in the invoking directory, keyed by run ID.
 
 ### `docmend scan PATH`

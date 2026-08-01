@@ -4,7 +4,7 @@ id: 'adr-0017-docmend-branch-and-ci-cd-workflow'
 title: 'ADR 0017: Branch strategy, branch protection, release process, and CI/CD workflow'
 description: 'Adopts the hw-radar workflow model for docmend: a protected main advanced only by merge-commit PRs from a long-lived dev branch; classic branch protection on main requiring all five CI gates (strict), signed commits, admin enforcement, and conversation resolution; release automation deferred to MS-5 with the intended tag-to-GitHub-Release path documented; and dependabot + a distribution-tightened dependency-review license gate. Records why standard-owned workflows were left unedited (no dev push-trigger) and why classic protection was chosen over rulesets.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-06'
 updated: '2026-07-06'
 reviewed: null

@@ -12,7 +12,7 @@ Long-lived pattern library for docmend — "how we do things here." Check this b
 | 4 | Editor regenerates the spec's ToC | Run `scripts/fix_spec_toc.py` before `spec validate` |
 | 5 | Recording an architectural/deviation decision | Author an ADR from the template |
 | 6 | Adding any file, fixture, comment, or doc | Never real library documents, paths, or personal content |
-| 7 | Touching frontmatter anywhere | Product frontmatter vs. repo-doc frontmatter are different systems — never conflate |
+| 7 | Touching frontmatter anywhere | Product, Project Spec, and ADR frontmatter are separate systems — never conflate |
 | 8 | Considering an edit to a standard-owned file | Don't, without a documented ADR exception |
 | 9 | Citing a settled decision in the spec | Use `OQ-`/`D-`/ADR stems only — never `RQ-` |
 
@@ -152,12 +152,13 @@ uv run python scripts/fix_spec_toc.py
 
 **Applies when:** touching any YAML frontmatter, anywhere in this repo.
 
-**Rule:** These are two unrelated systems — never conflate them.
+**Rule:** These are three unrelated systems — never conflate them.
 
 - **Product frontmatter** — the Pandoc-flavored YAML docmend _emits into every converted document_ (title, author, provenance, generated fields). Governed by its own schema in `docs/specs/docmend.md` (§9 Data Model / DR-005) — never validated or reformatted by this repo's markdownlint/Prettier config.
-- **Repo-doc frontmatter** — YAML on `docs/**` and ADRs. Deliberately unvalidated (see #8 / ADR-0001) — keep it consistent by convention.
+- **Project Spec frontmatter** — YAML on `docs/specs/**/*.md`, governed only by the Project Spec package and SPEC-VHHB's selected profile.
+- **ADR frontmatter** — YAML on `docs/adr/**/*.md` except the create-only template, governed by the Markdown Frontmatter package under ADR-0023.
 
-**Why:** the repo's Markdown Frontmatter Standard was deliberately not adopted (ADR-0001) because its schema conflicts with docmend's Pandoc-oriented output contract; conflating the two would either break product output or misapply repo-doc rules to it.
+**Why:** ADR-0023 adopts the repository schema only for ADRs. Its positive include remains disjoint from both docmend's Pandoc-oriented output contract and Project Spec metadata, preventing either from being validated against the wrong schema.
 
 **Sources:** `docs/adr/adr-0001-no-markdown-frontmatter-standard.md`; spec §9 / DR-005.
 
@@ -173,6 +174,6 @@ uv run python scripts/fix_spec_toc.py
 
 **Why:** these files are the mechanism CI enforcement depends on; unreviewed edits here can silently weaken the gate.
 
-**Sources:** four adopted Project Standards (python-tooling, markdown-tooling, project-spec, adr), managed by the V5 control plane (`.standards/`, project-standards `@v5`); adr-0017 (Dependabot exception).
+**Sources:** seven adopted Project Standards packages, managed by the V5 control plane (`.standards/`, project-standards `@v5`); adr-0017 (Dependabot exception); adr-0023 (ADR-only frontmatter scope).
 
 **Related:** #1, #2, #3, #5.

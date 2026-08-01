@@ -2,11 +2,11 @@
 schema_version: '1.1'
 id: 'adr-0001-docmend-do-not-adopt-markdown-frontmatter-standard'
 title: 'ADR 0001: Do not adopt the Markdown Frontmatter Standard'
-description: "docmend adopts five Project Standards but deliberately excludes the Markdown Frontmatter Standard, whose canonical schema conflicts with docmend's own frontmatter contracts."
+description: "docmend initially excluded the Markdown Frontmatter Standard because its repository schema conflicted with docmend's product frontmatter contracts; ADR-0023 supersedes that repository-wide non-adoption with an ADR-only scope."
 doc_type: 'adr'
-status: 'accepted'
+status: 'superseded'
 created: '2026-07-05'
-updated: '2026-07-29'
+updated: '2026-08-01'
 reviewed: null
 owner: 'chrisdpurcell'
 consumer: 'agent'
@@ -20,7 +20,7 @@ related:
   - '.standards/config.toml'
   - 'docs/specs/docmend.md'
 supersedes: []
-superseded_by: null
+superseded_by: 'docs/adr/adr-0023-adopt-markdown-frontmatter-for-adrs.md'
 source: []
 confidence: 'high'
 visibility: 'public'
@@ -69,6 +69,8 @@ Compliance is confirmed by inspection of `.standards/config.toml`: it enables th
 
 ## More Information
 
+Superseded by [ADR-0023](adr-0023-adopt-markdown-frontmatter-for-adrs.md), which adopts the package for the narrowly selected ADR corpus while retaining this decision's separation from Project Spec and product-output frontmatter.
+
 - Adopted standards and their wiring: [`.standards/config.toml`](../../.standards/config.toml).
-- Current package guidance: the [ADR 1.3 adoption guide](https://github.com/L3DigitalNet/project-standards/blob/v5.11.0/standards/adr/versions/1.3/adopt.md) and [Project Specification 1.5 adoption guide](https://github.com/L3DigitalNet/project-standards/blob/v5.11.0/standards/project-spec/versions/1.5/adopt.md).
+- Current package guidance: the [ADR 1.3 adoption guide](https://github.com/L3DigitalNet/project-standards/blob/v5.13.0/standards/adr/versions/1.3/adopt.md) and [Project Specification 1.5 adoption guide](https://github.com/L3DigitalNet/project-standards/blob/v5.13.0/standards/project-spec/versions/1.5/adopt.md).
 - Revisit this decision if docmend's product frontmatter and the canonical schema converge, or if a per-directory frontmatter-schema selection mechanism is added to the standard.

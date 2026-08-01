@@ -12,8 +12,8 @@ This directory holds docmend's Architecture Decision Records (ADRs): short docum
 
 - **Format:** [MADR](https://adr.github.io/madr/) (Markdown Any Decision Records) — one decision per file.
 - **Filenames:** `adr-NNNN-short-title.md`; the `id` frontmatter embeds the repo name (`adr-NNNN-docmend-short-title`). Numbering is sequential and never reused.
-- **Status lifecycle:** `draft` → `accepted` → (eventually) `superseded`. A superseded ADR stays in place with `superseded_by` set — ADRs are immutable historical records, not living documents; a changed decision gets a new ADR that supersedes the old one.
-- **Validation:** ADR frontmatter is **not** CI-validated in this repo — the Markdown Frontmatter Standard is deliberately not adopted (see [ADR-0001](adr-0001-no-markdown-frontmatter-standard.md)), so ADRs are kept consistent **by convention**. Markdown body linting (markdownlint + Prettier) does apply.
+- **Status lifecycle:** frontmatter uses `draft` → `active` → (eventually) `superseded`; `active` is the package's canonical mapping for MADR's accepted state. A superseded ADR stays in place with `superseded_by` set — ADRs are immutable historical records, not living documents; a changed decision gets a new ADR that supersedes the old one.
+- **Validation:** ADR frontmatter is validated by the narrowly scoped Markdown Frontmatter package (see [ADR-0023](adr-0023-adopt-markdown-frontmatter-for-adrs.md)); the create-only template is excluded. Markdown body linting (markdownlint + Prettier) also applies.
 
 ## Relationship to the decision backlog
 

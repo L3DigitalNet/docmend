@@ -4,7 +4,7 @@ id: 'adr-0010-docmend-pluggable-policy-seams'
 title: 'ADR 0010: Design-for-pluggable policy seams'
 description: 'docmend keeps its "generally useful" ambition as an architectural principle, not v1 feature work: naming policy, preservation strategy, controlled-vocabulary source, and frontmatter emission are each isolated behind a seam so a later version can add config-driven policies without a breaking redesign, while v1 ships exactly one minimal default per seam and no swap-config machinery.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-05'
 updated: '2026-07-06'
 reviewed: null

@@ -4,7 +4,7 @@ id: 'adr-0014-docmend-tool-first-product-scope'
 title: 'ADR 0014: Tool-first product scope — scale-flexibility is a binding requirement'
 description: 'The product is the scale-flexible tool, not the >100k-file migration pipeline: docmend must be fully functional from a single file to an entire library, bound by G-006 (scale-flexibility goal) and NFR-006 (small-scale floor). The v1 surface stays the scan→plan→apply→verify pipeline scaled down — ceremony scales, it is never waived — and a low-ceremony one-shot command is deferred as WH-008. Amends RQ-010/ADR-0010, which had kept genericity an architectural principle only.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-06'
 updated: '2026-07-06'
 reviewed: null

@@ -4,7 +4,7 @@ id: 'adr-0015-docmend-test-corpus-and-anonymization'
 title: 'ADR 0015: Two-corpus test architecture and real-anomaly anonymization'
 description: 'docmend tests against two corpora with opposite lifecycles produced by one pure seedable generator: a 100k-file scale corpus generated at test time from a recorded seed (never committed, slow-marked) and a small committed weird-document corpus of size-capped, provenance-decoupled fixtures. Real-library anomalies enter the committed corpus only through a re-synthesis anonymization procedure — reproduce the causal mechanism through unrelated synthetic filler, never mask or scrub original bytes — with an explicit reviewer gate.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-06'
 updated: '2026-07-06'
 reviewed: null

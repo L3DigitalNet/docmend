@@ -4,7 +4,7 @@ id: 'adr-0021-docmend-artifact-destination-guard'
 title: 'ADR 0021: Artifact destination guard'
 description: 'Every CLI artifact write passes one source-aware preflight: a destination is refused as a safety refusal (exit 3) when either the lexical directory entry publication replaces or its fully resolved referent lies inside the corpus root, except destinations under the canonical .docmend/ artifact root that the effective excludes still cover per destination; aliases of invocation inputs are refused outright, staging is O_EXCL-randomized everywhere, and the apply report finalizes inside the run lock.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-10'
 updated: '2026-07-10'
 reviewed: null
