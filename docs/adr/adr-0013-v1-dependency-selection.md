@@ -4,7 +4,7 @@ id: 'adr-0013-docmend-v1-dependency-selection'
 title: 'ADR 0013: v1 runtime and dev dependency selection'
 description: "One consolidated record for the five dependency choices resolved as RQ-017 through RQ-021 — structlog, jsonschema, pydantic v2, ruamel.yaml, and Hypothesis — each with its rejected alternatives, Python 3.14 wheel status, and license note, satisfying §8.6's rule that every dependency carries a recorded decision without spawning five thin ADRs."
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-05'
 updated: '2026-07-06'
 reviewed: null

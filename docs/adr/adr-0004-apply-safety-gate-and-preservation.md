@@ -4,7 +4,7 @@ id: 'adr-0004-docmend-apply-safety-gate-and-preservation'
 title: 'ADR 0004: Apply safety gate and preservation posture'
 description: "Before any non-dry-run mutation, docmend evaluates a set of pure independent predicates that prove both that a write is safe and that it can be mechanically undone, at a strength scaled to the operation's risk; docmend stays agnostic to the preservation backend the user chooses."
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-05'
 updated: '2026-07-10'
 reviewed: null

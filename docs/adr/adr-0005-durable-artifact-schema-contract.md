@@ -4,7 +4,7 @@ id: 'adr-0005-docmend-durable-artifact-schema-contract'
 title: 'ADR 0005: Durable artifact schema contract'
 description: "docmend's inventory, plan, report, and manifest are governed by four hand-authored, versioned JSON Schemas checked into the repo — the durable external contract between every command; the manifest is JSON Lines (NDJSON) because a single JSON document cannot be appended crash-safely."
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-05'
 updated: '2026-07-12'
 reviewed: null

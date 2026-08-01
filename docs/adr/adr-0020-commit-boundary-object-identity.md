@@ -4,7 +4,7 @@ id: 'adr-0020-docmend-commit-boundary-object-identity'
 title: 'ADR 0020: Commit-boundary object identity'
 description: 'Every corpus mutation binds to one filesystem object, not a pathname: bytes are read once through an O_NOFOLLOW descriptor whose (st_dev, st_ino) identity is captured and persisted, and immediately before every publish and unlink step the pathname is lstat-compared against that identity, with parent-path containment re-resolved at the same instant; targets appearing after the absent-target check are published no-clobber, never overwritten.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-10'
 updated: '2026-07-10'
 reviewed: null

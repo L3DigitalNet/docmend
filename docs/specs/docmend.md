@@ -6,7 +6,7 @@ profile: full # this is the Full template; see header note for sibling profiles
 owner: 'Chris Purcell'
 implementer: 'coding-agent'
 created: '2026-07-05'
-last_reviewed: '2026-07-18'
+last_reviewed: '2026-08-01'
 supersedes: null # SPEC id this replaces, if any
 superseded_by: null # filled in when this spec is retired
 related:
@@ -33,6 +33,7 @@ related:
     - 'docs/adr/adr-0020-commit-boundary-object-identity.md'
     - 'docs/adr/adr-0021-artifact-destination-guard.md'
     - 'docs/adr/adr-0022-sequential-million-file-scale-contract.md'
+    - 'docs/adr/adr-0023-adopt-markdown-frontmatter-for-adrs.md'
   tickets: []
   repositories: []
   prior_specs:
@@ -47,6 +48,7 @@ related:
 
 | Version | Date | Author | Change |
 | --- | --- | --- | --- |
+| 0.45 | `2026-08-01` | owner + `coding-agent` | **Repository metadata authority synchronization** — records ADR-0023's owner-selected adoption of the Project Standards Markdown Frontmatter package for `docs/adr/**/*.md` only, excluding the create-only ADR template. Project Spec metadata and docmend's Pandoc-oriented product frontmatter remain under their existing independent authorities; no product requirement, output schema, or runtime behavior changes. |
 | 0.44 | `2026-07-18` | owner + `coding-agent` | **DMR-08 and NFR-001 closure** — accepts clean candidate `ae3a28677390da7c823846c32af2c84b746ae861` and installed-wheel release evidence `ae3a28677390da7c823846c32af2c84b746ae861-release-1000000.json` at `sha256:c5253a874159e938768d0d7cd42e8742cc8464b0044888997cf61bfca13fb7e6`. The sequential scan/plan/apply/verify workflow completed 1,000,000 files in 25,629.225 seconds with exact 875,000 applied actions and 25,000 expected/observed findings, zero child swap, artifact-validated stages, and a 20,825,497,600-byte maximum stage RSS. The 25,902,581,760-byte absolute, 25,804-byte/file slope, 20% linearity, reference, and 43,200-second runtime limits all pass. Together with the accepted 100,000-file pilot and 12-case file-size matrix, this makes NFR-001 Complete and closes DMR-08; DMR-09 remains the next release blocker. |
 | 0.43 | `2026-07-17` | owner + `coding-agent` | **DMR-08 Task 11 qualification-harness correction** — replaces the fixed 2 MiB verify-stdout ceiling with `max(2 MiB, 128 bytes × recipe-derived expected findings)` and uses the same derived size in capacity preflight. The first clean-HEAD 1M attempt completed all four artifact-validated stages in 24,834.621 seconds with exact conservation, 25,000 expected/observed findings, zero child swap, and a 20,719,640,576-byte maximum stage RSS, but its deterministic 2,100,046-byte verify stdout exceeded the former ceiling by 2,894 bytes; evidence therefore remained incomplete and unaccepted before threshold evaluation. The observed finding records are 84 bytes each, so the upward-rounded 128-byte coefficient preserves bounded format headroom while the count remains sourced from the frozen corpus recipe. Owner approved this correction and one final clean-HEAD qualification on 2026-07-17. NFR-001 remains Partial until accepted installed-wheel 1M release evidence passes. |
 | 0.42 | `2026-07-17` | owner + `coding-agent` | **DMR-08 Task 11 file-size settlement** — accepts clean candidate `f050e0aa8e2d4cf05abae09d6834e88a74a00193` and its installed-wheel file-size evidence at `sha256:4db8276907201dc45366c29053e6da574443197defcc1f2969237fb4523d647e`. All 12 configured-maximum-derived UTF-8/Windows-1252 cases pass through 100 MiB, including both 100 MiB tool-backup cases, with zero child swap, complete scan/plan/apply/verify conservation, and a 1,894,080,512-byte maximum stage RSS below the 2 GiB limit. The configured 100 MiB default is no longer provisional. NFR-001 remains Partial until accepted installed-wheel 1M release evidence passes. |
@@ -294,7 +296,7 @@ A normalized corpus in which every in-scope document is UTF-8 (no BOM), LF-termi
 | C-002 | This repository is public: no real library documents, real library paths, or personal/identifying content in code, fixtures, or docs — synthetic or public-domain test fixtures only. | Repository sensitive-data policy (`AGENTS.md`). |
 | C-003 | The file volume precludes manual review of results; safety must be mechanical (backups, dry-run, gates, reports), never "check it by hand." | Library scale (§1); owner requirement. |
 | C-004 | Generated documents must remain Pandoc-compatible: one YAML metadata block, first in the file, `---` delimited. | Pandoc CommonMark-family reader requirements (see References). |
-| C-005 | The product frontmatter schema is governed by this spec alone — never validated or reformatted by the repository's markdownlint/Prettier tooling. | ADR 0001 (Markdown Frontmatter Standard deliberately not adopted). |
+| C-005 | The product frontmatter schema is governed by this spec alone — never selected by the repository's ADR-only Markdown Frontmatter package or reformatted by repository markdownlint/Prettier tooling. | ADR 0023 (repository validation is limited to ADR metadata) and ADR 0011 (product frontmatter contract). |
 | C-006 | Generated frontmatter scalar values are plain data, never authored Markdown formatting — Pandoc parses YAML metadata leaf scalars as Markdown even for CommonMark-family readers, so unconstrained formatting in fields like `description` would blur metadata and body semantics. | `docs/research/managing-pandoc-markdown-and-strict-yaml-frontmatter.md`. |
 
 ---
@@ -486,7 +488,7 @@ Guidance: keep domain logic separate from CLI glue; make the encoding-detection 
 | D-005 | Configuration is TOML, read with stdlib `tomllib`. | Fits Python projects; easy for agents to edit; read-only stdlib parsing needs no dependency. | YAML (heavier, ambiguity-prone for config); JSON (no comments); INI (poor nesting). | — |
 | D-006 | Explicit plan-file workflow: `plan` emits a reviewable artifact that `apply` executes and re-validates against source hashes. | Separates decision from execution; the plan is the human/agent review surface and the stale-input guard (FR-003). | Direct scan-and-apply (no review point, no stale-input protection). | `adr-0002-layered-pipeline-isolated-writer` |
 | D-007 | Frontmatter separates mechanical from semantic metadata: Pandoc-recognized fields at the root, docmend-owned data under namespaced objects (`docmend`, `source`, `output`). | Mechanical fields are regenerable and trustworthy; semantic fields carry known/inferred/unknown status so low-confidence inference never masquerades as user-confirmed truth. | Flat schema (mixes regenerable and hand-curated data); fully namespaced (breaks Pandoc export compatibility). | `adr-0011-frontmatter-optional-minimal-split` |
-| D-008 | The repository's Markdown Frontmatter Standard is deliberately not adopted; the product frontmatter contract is governed by this spec alone. | The canonical repo-doc schema conflicts with docmend's Pandoc-oriented frontmatter contract. | Adopting the standard and excluding product output (still risks tooling conflation). | `adr-0001-no-markdown-frontmatter-standard` |
+| D-008 | The repository's Markdown Frontmatter package governs only `docs/adr/**/*.md`, excluding the ADR template; Project Spec metadata and the product frontmatter contract remain independently governed. | A positive ADR-only corpus adds schema and ID validation without selecting specifications or docmend product output. | Repository-wide adoption with exclusions; complete non-adoption (the superseded ADR-0001 choice). | `adr-0023-adopt-markdown-frontmatter-for-adrs` |
 | D-009 | Policy seams for design-for-pluggable genericity: naming policy, preservation strategy, controlled-vocabulary source, and frontmatter emission are each isolated behind an interface; v1 ships exactly one minimal default per seam and no swap-config machinery. | docmend must stay generally useful (§1, OQ-020, OQ-024) without building plugin configuration in v1; seams make later config-driven policies a non-breaking addition, while build-minimal keeps v1 focused on correctness and safety first. | Hardcode each policy (cheap now, breaking change to generalize later); build full pluggable config in v1 (scope creep competing with correctness-first). | `adr-0010-pluggable-policy-seams` |
 
 ### 8.4 Solution Alternatives Considered

@@ -4,7 +4,7 @@ id: 'adr-0011-docmend-frontmatter-optional-minimal-split'
 title: 'ADR 0011: Frontmatter — optional, minimal, mechanical/semantic split'
 description: 'Product-output frontmatter is an opt-in feature, not core behavior; v1 emits only a minimal skeleton that validates against schemas/frontmatter.schema.json, structured as a mechanical/semantic split — Pandoc-recognized fields at the YAML root, docmend-owned data under namespaced objects — with required mechanical fields non-null, optional fields omitted rather than null, and the rich provenance-status wrapper deferred.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-05'
 updated: '2026-07-05'
 reviewed: null
@@ -43,7 +43,7 @@ project:
 
 docmend's output is Pandoc-flavored Markdown: a boring, portable CommonMark body plus a strict YAML frontmatter block that Pandoc recognizes and can carry onward to HTML/EPUB/DOCX/PDF (D-001). Frontmatter is the durable heart of the output data model (§9). But the full metadata vision — inferred titles/authors/dates, controlled vocabularies, a known/inferred/unknown provenance wrapper — is semantic-enrichment work that v1 explicitly does not do (RQ-001). So: does v1 emit frontmatter at all, and if so, in what shape?
 
-> **Scope note — not the same decision as ADR-0001.** ADR-0001 rejected adopting the project-standards **Markdown Frontmatter Standard for this repo's own documentation**. This ADR governs the **frontmatter docmend writes into converted product documents**. Same word, two different surfaces (conventions #7 draws exactly this line); the two decisions are independent and non-conflicting.
+> **Scope note — not the same decision as ADR-0023.** ADR-0023 adopts the Project Standards **Markdown Frontmatter package only for repository ADRs**. This ADR governs the **frontmatter docmend writes into converted product documents**. Same word, two different surfaces (conventions #7 draws exactly this line); the two decisions are independent and non-conflicting.
 
 ## Decision Drivers
 
@@ -87,5 +87,5 @@ Confirmed by: `schemas/frontmatter.schema.json` existing and rejecting a `null` 
 
 - Spec: §7.1 FR-016, §9, DR-005, D-001, D-007.
 - Research: `managing-pandoc-markdown-and-strict-yaml-frontmatter`, `safe-yaml-loading`.
-- Decision owner: owner (RQ-008 scope + RQ-014 schema detail, both 2026-07-05). Sibling to ADR-0001 (repo-doc frontmatter standard, distinct surface); instance of ADR-0010 (emission is a seam); depends on ADR-0013 (codec + validator) and ADR-0008 (`docmend.id`); versioned under ADR-0005.
+- Decision owner: owner (RQ-008 scope + RQ-014 schema detail, both 2026-07-05). Distinct from ADR-0023 (ADR metadata validation only); instance of ADR-0010 (emission is a seam); depends on ADR-0013 (codec + validator) and ADR-0008 (`docmend.id`); versioned under ADR-0005.
 - Revisit when semantic enrichment (§2.3 WH-###) is scheduled — that unfreezes the deferred `metadata_status` wrapper, inferred fields, and controlled-vocabulary validation.

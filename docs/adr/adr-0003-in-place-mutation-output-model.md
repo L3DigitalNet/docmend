@@ -4,7 +4,7 @@ id: 'adr-0003-docmend-in-place-mutation-output-model'
 title: 'ADR 0003: In-place mutation as the v1 output model'
 description: "v1 mutates files at their source location via atomic same-directory replace, backups, manifest, and path containment — not a separate output-root/copy-out tree. Clarifies that 'in-place' means same-location output via atomic replace, not naive mid-write byte overwrite."
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-05'
 updated: '2026-07-05'
 reviewed: null

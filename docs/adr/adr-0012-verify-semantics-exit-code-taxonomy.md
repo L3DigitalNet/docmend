@@ -4,7 +4,7 @@ id: 'adr-0012-docmend-verify-semantics-exit-code-taxonomy'
 title: 'ADR 0012: verify semantics and tool-wide exit-code taxonomy'
 description: 'verify is a read-only command that validates corpus state and artifacts; a small stable exit-code taxonomy — 0 clean, 1 findings, 2 invocation/config/artifact-input error, 3 safety refusal — is applied tool-wide across scan/plan/apply/verify/restore so scripts and agents can distinguish success-with-skips from partial failure from bad invocation from a deliberate safety refusal.'
 doc_type: 'adr'
-status: 'accepted'
+status: 'active'
 created: '2026-07-05'
 updated: '2026-07-10'
 reviewed: null
