@@ -41,8 +41,8 @@ Use this checklist for periodic cleanup passes and before declaring a broad repo
 
 The following may be deleted:
 
-- [ ] Completed plans from `docs/plans/` and `docs/superpowers/plans/`. Plans for sub-phases of a larger project should be retained until the overall project is complete.
-- [ ] Fully addressed reviews from `docs/codex-reviews/`.
+- [ ] Completed plans retained outside the current documentation tree. Preserve any required durable evidence before pruning them.
+- [ ] Fully addressed reviews from `docs/reviews/`.
 
 ## Document Specific Maintenance
 

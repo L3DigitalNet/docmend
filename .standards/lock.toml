@@ -1088,18 +1088,6 @@ content_digest = "sha256:fce8e56c6804d273e202e62b1e86486bbe0b21bc63def2f12812646
 created_container = false
 
 [[artifacts]]
-path = "docs/usage.md"
-adapter = "whole-file"
-scope = "$file"
-owners = ["cli-documentation"]
-versions = { cli-documentation = "1.5" }
-provenance = "provider"
-policy = "create-only"
-semantic_digest = "sha256:502f364f929bbe4e5bfbab73d232d664e1c1f8af47480bc93f402f3c34e6c8bf"
-content_digest = "sha256:502f364f929bbe4e5bfbab73d232d664e1c1f8af47480bc93f402f3c34e6c8bf"
-created_container = true
-
-[[artifacts]]
 path = "pyproject.toml"
 adapter = "toml"
 scope = "key:/dependency-groups/dev"
@@ -1278,3 +1266,11 @@ policy = "managed"
 semantic_digest = "sha256:cb5b4105b9125a7d40f2e5d9d1e557e9a4d5eddb416909c33a661c8e8e32ece4"
 content_digest = "sha256:cb5b4105b9125a7d40f2e5d9d1e557e9a4d5eddb416909c33a661c8e8e32ece4"
 created_container = false
+
+[[create_only_absences]]
+path = "docs/usage.md"
+adapter = "whole-file"
+scope = "$file"
+owners = ["cli-documentation"]
+versions = { cli-documentation = "1.5" }
+provenance = "provider"

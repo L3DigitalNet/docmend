@@ -18,8 +18,7 @@ tags:
 aliases: []
 related:
   - 'docs/specs/docmend.md'
-  - 'docs/superpowers/specs/2026-07-10-safety-core-remediation-design.md'
-  - 'docs/codex-reviews/2026-07-10-2034-comprehensive-review-synthesis.md'
+  - 'docs/specs/2026-07-10-safety-core-remediation-design.md'
   - 'docs/adr/adr-0005-durable-artifact-schema-contract.md'
   - 'docs/adr/adr-0012-verify-semantics-exit-code-taxonomy.md'
 supersedes: []
@@ -73,7 +72,7 @@ Confirmed by: the artifact-clobber regression matrix across scan, plan, apply dr
 ## More Information
 
 - **Amendment (2026-07-10, Plan A implementation-plan review F3/F6, owner-approved):** containment made explicitly two-candidate (lexical entry + resolved referent) and the carve-out license made per-destination against the effective excludes rather than root-wide. Both were latent requirements of this ADR's own invariant — `os.replace` swaps directory entries, and gitignore negation can re-include a single path — surfaced by the plan review's counterexamples; spec IR-007 wording aligned in rev 0.27. JSON-artifact file modes remain umask-derived and undecided: permission policy is deferred to the observability/documentation sub-project, deliberately not decided here.
-- Guard rules and carve-out reasoning: `docs/superpowers/specs/2026-07-10-safety-core-remediation-design.md` (Artifact Destination Guard section; review finding F1 closed).
+- Guard rules and carve-out reasoning: `docs/specs/2026-07-10-safety-core-remediation-design.md` (Artifact Destination Guard section; review finding F1 closed).
 - Spec: rev 0.26 — IR-007, §18.5; OQ-034's default-location decision is preserved, now with the exclusion made load-bearing.
 - Exit-code classification (guard refusal = 3, never 2) is recorded against the amended `adr-0012-verify-semantics-exit-code-taxonomy`.
 - Revisit if the default artifact root ever moves outside the corpus (the rejected second option becomes attractive if `.docmend/` gains non-artifact content).

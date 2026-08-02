@@ -37,9 +37,9 @@ Run a **workflow** to:
 
 ## References
 
-- [`docmend` Specification](docs/specs/docmend.md)
-- [Resolved Questions](docs/resolved-questions.md)
-- [Open Questions](docs/open-questions.md)
-- [Architecture Decision Records](docs/adr)
-- [Research Reports](docs/research)
-- [Deep Research Queue](docs/deep-research-queue.md)
+- [`docmend` Specification](../specs/docmend.md)
+- [Resolved Questions](../resolved-questions.md)
+- [Open Questions](../open-questions.md)
+- [Architecture Decision Records](../adr/)
+- [Research Reports](../research/)
+- [Deep Research Queue](../deep-research-queue.md)

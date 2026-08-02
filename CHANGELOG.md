@@ -13,7 +13,7 @@ Maintenance release: repository tooling migration and internal simplifications. 
 
 ## [2.0.1] - 2026-07-19
 
-Remediation of the 2026-07-19 comprehensive project review (`docs/fable-review/2026-07-19-docmend-review.md`): 26 findings fixed, none Critical or High.
+Remediation of the 2026-07-19 comprehensive project review: 26 findings fixed, none Critical or High.
 
 ### Fixed
 
@@ -130,6 +130,8 @@ First release. docmend normalizes, repairs, and converts legacy `.txt`/`.html` d
 - Five pinned JSON Schemas (inventory, plan, report, manifest, frontmatter) ship inside the package as the durable artifact contract.
 - Scale-tested: the seeded 100,000-file synthetic-corpus test completes in about six minutes with peak memory under 500 MiB.
 
+[2.0.2]: https://github.com/chrisdpurcell/docmend/releases/tag/v2.0.2
+[2.0.1]: https://github.com/chrisdpurcell/docmend/releases/tag/v2.0.1
 [2.0.0]: https://github.com/chrisdpurcell/docmend/releases/tag/v2.0.0
 [1.0.2]: https://github.com/chrisdpurcell/docmend/releases/tag/v1.0.2
 [1.0.1]: https://github.com/chrisdpurcell/docmend/releases/tag/v1.0.1

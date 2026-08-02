@@ -253,7 +253,7 @@ docmend verify ./documents --plan ./plan.json \
 
 ## SEE ALSO
 
-- [README](../README.md) — task-oriented overview and configuration defaults.
-- [Project specification](specs/docmend.md) — normative behavior and safety contracts.
-- [Restore from a manifest](runbooks/restore-from-manifest.md).
-- [Resume after an interruption](runbooks/resume-after-interruption.md).
+- [README](../../README.md) — task-oriented overview and configuration defaults.
+- [Project specification](../specs/docmend.md) — normative behavior and safety contracts.
+- [Restore from a manifest](../runbooks/restore-from-manifest.md).
+- [Resume after an interruption](../runbooks/resume-after-interruption.md).

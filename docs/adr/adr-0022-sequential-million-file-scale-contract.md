@@ -20,8 +20,7 @@ related:
   - 'docs/specs/docmend.md'
   - 'docs/resolved-questions.md'
   - 'docs/adr/adr-0005-durable-artifact-schema-contract.md'
-  - 'docs/superpowers/specs/2026-07-11-million-file-scale-and-resource-design.md'
-  - 'docs/superpowers/plans/2026-07-11-million-file-scale-and-resource-contract.md'
+  - 'docs/specs/2026-07-11-million-file-scale-and-resource-design.md'
 supersedes:
   - 'docs/adr/adr-0007-concurrency-primitive-process-pool.md'
 superseded_by: null
@@ -80,7 +79,7 @@ Confirmed by: strict config tests for every legacy parallel-table shape; plan 2.
 ## More Information
 
 - Owner decision: OQ-037 / RQ-037, approved 2026-07-11.
-- Approved design: `docs/superpowers/specs/2026-07-11-million-file-scale-and-resource-design.md`.
-- Implementation plan: `docs/superpowers/plans/2026-07-11-million-file-scale-and-resource-contract.md`.
+- Approved design: `docs/specs/2026-07-11-million-file-scale-and-resource-design.md`.
+- The completed implementation plan was pruned after DMR-08 closed; accepted evidence remains under `docs/scale-evidence/`.
 - Plan compatibility: `docs/adr/adr-0005-durable-artifact-schema-contract.md`.
 - Supersedes `docs/adr/adr-0007-concurrency-primitive-process-pool.md`; concurrency reopens only through the evidence and approval conditions in this ADR.

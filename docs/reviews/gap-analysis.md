@@ -1,8 +1,8 @@
 # docmend Gap Analysis
 
-**Generated:** 2026-07-05 · **Method:** 12-lens multi-agent workflow (Sonnet reviewers + Opus consolidation/synthesis), 36 agents, 22 evidence-backed research reports under [`research/`](research/).
+**Generated:** 2026-07-05 · **Method:** 12-lens multi-agent workflow (Sonnet reviewers + Opus consolidation/synthesis), 36 agents, 22 evidence-backed research reports under [`research/`](../research).
 
-This is the comprehensive gap register for `docmend`. It complements the two decision docs, which hold the actionable subset: genuine undecided decisions live as open questions in [`open-questions.md`](open-questions.md) (OQ-015..020 were added from this analysis); research prompts live in [`deep-research-queue.md`](deep-research-queue.md). This file is the full ranked landscape with downstream-impact analysis; it is a point-in-time analysis, not a living decision record.
+This is the comprehensive gap register for `docmend`. It complements the two decision docs, which hold the actionable subset: genuine undecided decisions live as open questions in [`open-questions.md`](../open-questions.md) (OQ-015..020 were added from this analysis); research prompts live in [`deep-research-queue.md`](../deep-research-queue.md). This file is the full ranked landscape with downstream-impact analysis; it is a point-in-time analysis, not a living decision record.
 
 ## How to read this
 
@@ -58,53 +58,53 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 | GAP-16 | Config precedence and merge semantics underspecified | Medium | spec-change | OQ-014 | — |
 | GAP-17 | IR-005 flag behaviors undefined / criterion not testable | Low | spec-change | — | — |
 | GAP-18 | No ERR- rows for scan-time or plan-time failures | Medium | spec-change | — | — |
-| GAP-19 | Logging framework, format, destination, rotation unspecified | High | new-open-question | — | [`structured-logging-library.md`](research/structured-logging-library.md) |
-| GAP-20 | No progress/ETA reporting or liveness heartbeat | Medium | spec-change | OQ-010 | [`batch-throughput-and-capacity.md`](research/batch-throughput-and-capacity.md) |
+| GAP-19 | Logging framework, format, destination, rotation unspecified | High | new-open-question | — | [`structured-logging-library.md`](../research/structured-logging-library.md) |
+| GAP-20 | No progress/ETA reporting or liveness heartbeat | Medium | spec-change | OQ-010 | [`batch-throughput-and-capacity.md`](../research/batch-throughput-and-capacity.md) |
 | GAP-21 | Console/human-readable summary format undefined | Low | spec-change | OQ-004 | — |
-| GAP-22 | Concurrency primitive undecided for Python 3.14 target | High | new-open-question | OQ-010 | [`python-314-concurrency-model.md`](research/python-314-concurrency-model.md) |
-| GAP-23 | No worker-locking/mutual-exclusion for shared manifest/report/backup | High | spec-change | OQ-004 | [`python-314-concurrency-model.md`](research/python-314-concurrency-model.md) |
-| GAP-24 | Incremental-manifest 'JSON' framing conflicts with crash-safe append | High | spec-change | OQ-004 | [`append-safe-manifest-format.md`](research/append-safe-manifest-format.md) |
+| GAP-22 | Concurrency primitive undecided for Python 3.14 target | High | new-open-question | OQ-010 | [`python-314-concurrency-model.md`](../research/python-314-concurrency-model.md) |
+| GAP-23 | No worker-locking/mutual-exclusion for shared manifest/report/backup | High | spec-change | OQ-004 | [`python-314-concurrency-model.md`](../research/python-314-concurrency-model.md) |
+| GAP-24 | Incremental-manifest 'JSON' framing conflicts with crash-safe append | High | spec-change | OQ-004 | [`append-safe-manifest-format.md`](../research/append-safe-manifest-format.md) |
 | GAP-25 | No resume/checkpoint story for interrupted scan or plan | Medium | update-existing-oq | OQ-003 | — |
-| GAP-26 | No algorithm for generating docmend.id or recovering identity on re-scan | High | update-existing-oq | OQ-002 | [`stable-document-id-scheme.md`](research/stable-document-id-scheme.md) |
+| GAP-26 | No algorithm for generating docmend.id or recovering identity on re-scan | High | update-existing-oq | OQ-002 | [`stable-document-id-scheme.md`](../research/stable-document-id-scheme.md) |
 | GAP-27 | Run-ID scheme referenced but never defined | High | update-existing-oq | OQ-004 | — |
 | GAP-28 | DR-002 plan requirement lacks a per-action ID assumed by resume | Medium | spec-change | OQ-004 | — |
-| GAP-29 | No schema-versioning/migration policy for artifacts and frontmatter | Medium | research-only | OQ-004 | [`json-schema-versioning-migration.md`](research/json-schema-versioning-migration.md) |
-| GAP-30 | Manifest granularity (per-run vs cumulative ledger) undecided | Medium | update-existing-oq | OQ-004 | [`append-safe-manifest-format.md`](research/append-safe-manifest-format.md) |
+| GAP-29 | No schema-versioning/migration policy for artifacts and frontmatter | Medium | research-only | OQ-004 | [`json-schema-versioning-migration.md`](../research/json-schema-versioning-migration.md) |
+| GAP-30 | Manifest granularity (per-run vs cumulative ledger) undecided | Medium | update-existing-oq | OQ-004 | [`append-safe-manifest-format.md`](../research/append-safe-manifest-format.md) |
 | GAP-31 | Symlink handling underspecified beyond 'don't follow for mutation' | Medium | update-existing-oq | OQ-004 | — |
 | GAP-32 | Hardlinks entirely unaddressed unlike symlinks | Medium | update-existing-oq | OQ-004 | — |
-| GAP-33 | No docmend restore command; restore-drill automation undefined | High | spec-change | OQ-005 | [`restore-from-manifest-design.md`](research/restore-from-manifest-design.md) |
-| GAP-34 | Preservation-strategy safety-gate checks are self-declared, not verified | High | update-existing-oq | OQ-005 | [`backup-integrity-verification.md`](research/backup-integrity-verification.md) |
-| GAP-35 | No post-copy backup-integrity verification before mutating original | High | spec-change | OQ-005 | [`backup-integrity-verification.md`](research/backup-integrity-verification.md) |
+| GAP-33 | No docmend restore command; restore-drill automation undefined | High | spec-change | OQ-005 | [`restore-from-manifest-design.md`](../research/restore-from-manifest-design.md) |
+| GAP-34 | Preservation-strategy safety-gate checks are self-declared, not verified | High | update-existing-oq | OQ-005 | [`backup-integrity-verification.md`](../research/backup-integrity-verification.md) |
+| GAP-35 | No post-copy backup-integrity verification before mutating original | High | spec-change | OQ-005 | [`backup-integrity-verification.md`](../research/backup-integrity-verification.md) |
 | GAP-36 | Backup-directory-inside-target-root hazard not codified | High | update-existing-oq | OQ-005 | — |
 | GAP-37 | Tool-written backup file/dir permissions unaddressed for confidential data | Low | spec-change | — | — |
-| GAP-38 | No disk-space/backup-storage preflight or §14 storage-overhead dimension | Medium | spec-change | OQ-010 | [`batch-throughput-and-capacity.md`](research/batch-throughput-and-capacity.md) |
-| GAP-39 | Safety-gate check combinatorics have no defined test strategy | High | spec-change | OQ-005 | [`combinatorial-safety-gate-testing.md`](research/combinatorial-safety-gate-testing.md) |
-| GAP-40 | Path-containment mechanism asserted but not specified (realpath/TOCTOU) | Medium | research-only | OQ-004 | [`path-containment-toctou.md`](research/path-containment-toctou.md) |
-| GAP-41 | fsync/atomic-replace guarantees unbounded across filesystems | Low | research-only | — | [`atomic-write-filesystem-semantics.md`](research/atomic-write-filesystem-semantics.md) |
-| GAP-42 | Encoding-detector choice and 0.80 confidence threshold have no evidence base or owning OQ | High | new-open-question | OQ-001 | [`encoding-detection-benchmark.md`](research/encoding-detection-benchmark.md) |
-| GAP-43 | charset-normalizer exposes no single 0-1 confidence matching FR-007 | High | spec-change | — | [`encoding-detection-benchmark.md`](research/encoding-detection-benchmark.md) |
+| GAP-38 | No disk-space/backup-storage preflight or §14 storage-overhead dimension | Medium | spec-change | OQ-010 | [`batch-throughput-and-capacity.md`](../research/batch-throughput-and-capacity.md) |
+| GAP-39 | Safety-gate check combinatorics have no defined test strategy | High | spec-change | OQ-005 | [`combinatorial-safety-gate-testing.md`](../research/combinatorial-safety-gate-testing.md) |
+| GAP-40 | Path-containment mechanism asserted but not specified (realpath/TOCTOU) | Medium | research-only | OQ-004 | [`path-containment-toctou.md`](../research/path-containment-toctou.md) |
+| GAP-41 | fsync/atomic-replace guarantees unbounded across filesystems | Low | research-only | — | [`atomic-write-filesystem-semantics.md`](../research/atomic-write-filesystem-semantics.md) |
+| GAP-42 | Encoding-detector choice and 0.80 confidence threshold have no evidence base or owning OQ | High | new-open-question | OQ-001 | [`encoding-detection-benchmark.md`](../research/encoding-detection-benchmark.md) |
+| GAP-43 | charset-normalizer exposes no single 0-1 confidence matching FR-007 | High | spec-change | — | [`encoding-detection-benchmark.md`](../research/encoding-detection-benchmark.md) |
 | GAP-44 | UTF-16/UTF-32 BOM handling unaddressed; conflicts with NUL-byte heuristic | High | spec-change | — | — |
-| GAP-45 | No Unicode normalization form (NFC/NFD) policy for content or filenames | Medium | research-only | — | [`unicode-normalization-policy.md`](research/unicode-normalization-policy.md) |
+| GAP-45 | No Unicode normalization form (NFC/NFD) policy for content or filenames | Medium | research-only | — | [`unicode-normalization-policy.md`](../research/unicode-normalization-policy.md) |
 | GAP-46 | EC-005 'empty or drastically smaller output' has no numeric ratio or knob | Medium | spec-change | — | — |
 | GAP-47 | whitespace.normalize_tabs has no defined transformation semantics | Medium | spec-change | — | — |
 | GAP-48 | Missing edge case for already-empty (zero-byte) source files | Low | spec-change | — | — |
-| GAP-49 | No generation strategy for the 100k synthetic corpus or weird-document fixtures, no public-safe anonymization path | High | spec-change | — | [`synthetic-corpus-generation.md`](research/synthetic-corpus-generation.md) |
-| GAP-50 | Property-based testing required but Hypothesis not in §8.6 dependency policy | Medium | new-open-question | — | [`property-based-testing-hypothesis.md`](research/property-based-testing-hypothesis.md) |
+| GAP-49 | No generation strategy for the 100k synthetic corpus or weird-document fixtures, no public-safe anonymization path | High | spec-change | — | [`synthetic-corpus-generation.md`](../research/synthetic-corpus-generation.md) |
+| GAP-50 | Property-based testing required but Hypothesis not in §8.6 dependency policy | Medium | new-open-question | — | [`property-based-testing-hypothesis.md`](../research/property-based-testing-hypothesis.md) |
 | GAP-51 | No coverage-threshold reconciliation or per-component floor in the DoD | Medium | spec-change | — | — |
-| GAP-52 | NFR-005 transform-purity has no mechanical enforcement | Medium | spec-change | — | [`architecture-and-traceability-enforcement.md`](research/architecture-and-traceability-enforcement.md) |
-| GAP-53 | §17.3 traceability matrix omits IR/DR rows and has no drift-check automation | Medium | spec-change | OQ-004 | [`architecture-and-traceability-enforcement.md`](research/architecture-and-traceability-enforcement.md) |
-| GAP-54 | 100k-file scale test has no defined CI placement or execution budget | Low | spec-change | OQ-010 | [`batch-throughput-and-capacity.md`](research/batch-throughput-and-capacity.md) |
+| GAP-52 | NFR-005 transform-purity has no mechanical enforcement | Medium | spec-change | — | [`architecture-and-traceability-enforcement.md`](../research/architecture-and-traceability-enforcement.md) |
+| GAP-53 | §17.3 traceability matrix omits IR/DR rows and has no drift-check automation | Medium | spec-change | OQ-004 | [`architecture-and-traceability-enforcement.md`](../research/architecture-and-traceability-enforcement.md) |
+| GAP-54 | 100k-file scale test has no defined CI placement or execution budget | Low | spec-change | OQ-010 | [`batch-throughput-and-capacity.md`](../research/batch-throughput-and-capacity.md) |
 | GAP-55 | FR-016 vs FR-014 frontmatter-validation conditionality contradicts OQ-009 | High | update-existing-oq | OQ-009 | — |
 | GAP-56 | No frontmatter JSON Schema authored; §9 null-heavy example contradicts OQ-013 | Medium | doc-fix | OQ-013 | — |
 | GAP-57 | Controlled vocabularies (OQ-007) have no extensibility mechanism once frozen | Low | update-existing-oq | OQ-007 | — |
-| GAP-58 | JSON Schema validator library choice has no OQ despite §8.6 requiring one | Medium | new-open-question | OQ-004 | [`json-schema-validator-library.md`](research/json-schema-validator-library.md) |
-| GAP-59 | No dependency license policy or license-check tool for §16 and MS-0 | Medium | research-only | — | [`license-compliance-tooling.md`](research/license-compliance-tooling.md) |
-| GAP-60 | §8.6 runtime deps not in pyproject; no tracked MS-0 task; 3.14 wheel readiness unrecorded | Low | doc-fix | — | [`python-314-wheel-readiness.md`](research/python-314-wheel-readiness.md) |
-| GAP-61 | Review-workflow presupposed by WH-002/C.3 is undesigned and may conflict with headless-CLI/NG-001 | Medium | research-only | — | [`batch-curation-review-workflow.md`](research/batch-curation-review-workflow.md) |
+| GAP-58 | JSON Schema validator library choice has no OQ despite §8.6 requiring one | Medium | new-open-question | OQ-004 | [`json-schema-validator-library.md`](../research/json-schema-validator-library.md) |
+| GAP-59 | No dependency license policy or license-check tool for §16 and MS-0 | Medium | research-only | — | [`license-compliance-tooling.md`](../research/license-compliance-tooling.md) |
+| GAP-60 | §8.6 runtime deps not in pyproject; no tracked MS-0 task; 3.14 wheel readiness unrecorded | Low | doc-fix | — | [`python-314-wheel-readiness.md`](../research/python-314-wheel-readiness.md) |
+| GAP-61 | Review-workflow presupposed by WH-002/C.3 is undesigned and may conflict with headless-CLI/NG-001 | Medium | research-only | — | [`batch-curation-review-workflow.md`](../research/batch-curation-review-workflow.md) |
 | GAP-62 | §7.2 preamble names usability/maintainability NFR categories but no NFR covers them | Medium | spec-change | — | — |
-| GAP-63 | No per-file processing timeout/watchdog requirement or risk row | Medium | spec-change | — | [`per-file-watchdog-timeout.md`](research/per-file-watchdog-timeout.md) |
+| GAP-63 | No per-file processing timeout/watchdog requirement or risk row | Medium | spec-change | — | [`per-file-watchdog-timeout.md`](../research/per-file-watchdog-timeout.md) |
 | GAP-64 | §20 'Operational usability' success metric is not independently measurable | Low | spec-change | — | — |
-| GAP-65 | No requirement that frontmatter/config YAML parsing use a safe loader | Medium | spec-change | — | [`safe-yaml-loading.md`](research/safe-yaml-loading.md) |
+| GAP-65 | No requirement that frontmatter/config YAML parsing use a safe loader | Medium | spec-change | — | [`safe-yaml-loading.md`](../research/safe-yaml-loading.md) |
 | GAP-66 | Stale docs/handoff.md pointers survive migration to docs/handoff/ | Medium | doc-fix | — | — |
 | GAP-67 | ADR-0001 links a removed spec file twice and never links the canonical spec | Medium | doc-fix | — | — |
 | GAP-68 | docs/prompt.md points research output at a nonexistent docs/research-reports/ | Low | doc-fix | — | — |
@@ -164,7 +164,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-19 — Logging framework, format, destination, rotation unspecified
 
-**Priority:** High · **Disposition:** new-open-question · **Related OQ:** — · **Report:** [`structured-logging-library.md`](research/structured-logging-library.md) · **New OQ**
+**Priority:** High · **Disposition:** new-open-question · **Related OQ:** — · **Report:** [`structured-logging-library.md`](../research/structured-logging-library.md) · **New OQ**
 
 **Recommendation:** Open an OQ (and §8.6 dependency row) adopting structlog wired through stdlib logging handlers, emitting JSON Lines to a per-run file named by run-ID plus Rich-rendered console text, with --verbose/--quiet governing console level only and the file sink floored at DEBUG; extend the never-auto-delete retention rule to logs; use QueueHandler+QueueListener for NFR-001 parallelism.
 
@@ -172,7 +172,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-22 — Concurrency primitive undecided for Python 3.14 target
 
-**Priority:** High · **Disposition:** new-open-question · **Related OQ:** OQ-010 · **Report:** [`python-314-concurrency-model.md`](research/python-314-concurrency-model.md) · **New OQ**
+**Priority:** High · **Disposition:** new-open-question · **Related OQ:** OQ-010 · **Report:** [`python-314-concurrency-model.md`](../research/python-314-concurrency-model.md) · **New OQ**
 
 **Recommendation:** Open an OQ adopting concurrent.futures.ProcessPoolExecutor with multiprocessing.get_context('forkserver') pinned explicitly as the v1 CPU-bound primitive (not free-threaded 3.14t, not asyncio), default parallel.workers='auto' (os.process_cpu_count()) with a sequential mode as the default-until-profiled path used by NFR-005 purity tests; add a §18.2 parallel.\* config surface; fold into OQ-010.
 
@@ -180,7 +180,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-23 — No worker-locking/mutual-exclusion for shared manifest/report/backup
 
-**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-004 · **Report:** [`python-314-concurrency-model.md`](research/python-314-concurrency-model.md)
+**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-004 · **Report:** [`python-314-concurrency-model.md`](../research/python-314-concurrency-model.md)
 
 **Recommendation:** Specify a single-writer actor (or per-worker shard+merge) for incremental manifest/report appends and a run-level lock preventing two apply/plan invocations racing on the same manifest/report/backup path; NFR-002's atomic guarantee is per-document, not per shared artifact.
 
@@ -188,7 +188,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-24 — Incremental-manifest 'JSON' framing conflicts with crash-safe append
 
-**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-004 · **Report:** [`append-safe-manifest-format.md`](research/append-safe-manifest-format.md)
+**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-004 · **Report:** [`append-safe-manifest-format.md`](../research/append-safe-manifest-format.md)
 
 **Recommendation:** Adopt NDJSON (JSON Lines) for the DR-004 manifest — one schema-valid object per line, one file per apply run (manifest-<run_id>.jsonl), each record fsync'd immediately — and reword IR-007's 'as JSON' to be per-artifact (single document for inventory/plan/report; JSON Lines for the manifest); implement a Redis-AOF-style last-line-only torn-tail discard rule in resume/verify.
 
@@ -196,7 +196,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-26 — No algorithm for generating docmend.id or recovering identity on re-scan
 
-**Priority:** High · **Disposition:** update-existing-oq · **Related OQ:** OQ-002 · **Report:** [`stable-document-id-scheme.md`](research/stable-document-id-scheme.md)
+**Priority:** High · **Disposition:** update-existing-oq · **Related OQ:** OQ-002 · **Report:** [`stable-document-id-scheme.md`](../research/stable-document-id-scheme.md)
 
 **Recommendation:** In OQ-002, adopt UUIDv7 via Python 3.14 stdlib uuid.uuid7() for docmend.id (zero-dependency, standards-based) plus a 3-tier identity-recovery algorithm on re-scan: trust valid frontmatter docmend.id, else manifest path-match with hash confirmation, else manifest content-hash match, else mint a new UUIDv7 with an explicit 'identity not recoverable' report flag.
 
@@ -212,7 +212,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-33 — No docmend restore command; restore-drill automation undefined
 
-**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-005 · **Report:** [`restore-from-manifest-design.md`](research/restore-from-manifest-design.md)
+**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-005 · **Report:** [`restore-from-manifest-design.md`](../research/restore-from-manifest-design.md)
 
 **Recommendation:** Add a first-class `docmend restore [PATH...] [--dry-run|--write] [--to original|run:<id>] [--verify] [--run RUN_ID]` command in MS-3, symmetric to apply (same atomic-replace writer, path-containment, dry-run-default/--write opt-in); replay manifest records per docmend.id in strict reverse-chronological (LIFO) order; scope v1's automated path to preservation.kind=tool_backup and print a manual-restore report for git/external_backup so restore is decoupled from OQ-008; implement the 8-assertion CI restore drill from the report.
 
@@ -220,7 +220,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-34 — Preservation-strategy safety-gate checks are self-declared, not verified
 
-**Priority:** High · **Disposition:** update-existing-oq · **Related OQ:** OQ-005 · **Report:** [`backup-integrity-verification.md`](research/backup-integrity-verification.md)
+**Priority:** High · **Disposition:** update-existing-oq · **Related OQ:** OQ-005 · **Report:** [`backup-integrity-verification.md`](../research/backup-integrity-verification.md)
 
 **Recommendation:** In OQ-005, replace the boolean-config gate with per-strategy machine checks: for Git, non-bare working tree + all covered files tracked + is_dirty(path=covered_paths, untracked_files=True) is False (explicitly overriding GitPython's untracked_files=False default) with HEAD hexsha recorded as restore anchor; for tool backups, reuse FR-006's verified result; for Borg/restic, require a machine-readable snapshot receipt with recency window + sampled coverage; raise 'external backups declared' from a bare boolean to a recency-checked attestation; re-check at a bounded interval during long runs.
 
@@ -228,7 +228,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-35 — No post-copy backup-integrity verification before mutating original
 
-**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-005 · **Report:** [`backup-integrity-verification.md`](research/backup-integrity-verification.md)
+**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-005 · **Report:** [`backup-integrity-verification.md`](../research/backup-integrity-verification.md)
 
 **Recommendation:** Make FR-006 verify-then-mutate: fsync the backup, re-read it, recompute its hash, and compare against the plan's confirmed source.hash before the writer mutates the original; record a backup_verified manifest field; route a mismatch (silent truncation/corruption, full/failing medium) through ERR-004.
 
@@ -244,7 +244,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-39 — Safety-gate check combinatorics have no defined test strategy
 
-**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-005 · **Report:** [`combinatorial-safety-gate-testing.md`](research/combinatorial-safety-gate-testing.md)
+**Priority:** High · **Disposition:** spec-change · **Related OQ:** OQ-005 · **Report:** [`combinatorial-safety-gate-testing.md`](../research/combinatorial-safety-gate-testing.md)
 
 **Recommendation:** Adopt allpairspy (pure-Python, dev-only, behind a §8.6 OQ) for pairwise (t=2) coverage of the ~10 gate checks, escalating to t=3 for the preservation-strategy/manifest-writable/backup-destination trio (NIST staged-strength); implement the gate as pure independent predicates evaluated every run with a fixed priority-ordered deterministic blocking_reason plus a complete all_failures list.
 
@@ -252,7 +252,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-42 — Encoding-detector choice and 0.80 confidence threshold have no evidence base or owning OQ
 
-**Priority:** High · **Disposition:** new-open-question · **Related OQ:** OQ-001 · **Report:** [`encoding-detection-benchmark.md`](research/encoding-detection-benchmark.md) · **New OQ**
+**Priority:** High · **Disposition:** new-open-question · **Related OQ:** OQ-001 · **Report:** [`encoding-detection-benchmark.md`](../research/encoding-detection-benchmark.md) · **New OQ**
 
 **Recommendation:** Open an OQ keeping charset-normalizer as FR-007's sole detector (do not add chardet/faust-cchardet/uchardet), defining source.detected_encoding.confidence as 1.0 - CharsetMatch.chaos (matching charset-normalizer's own chardet-compat formula), keeping the 0.80 fail_below_confidence default, and adding a second independent skip gate on non-ASCII byte count (8-20, encoding-family dependent, validated against the weird-document corpus) because the documented short-text tie failure produces chaos=0.0 on a wrong answer no confidence threshold can catch.
 
@@ -260,7 +260,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-43 — charset-normalizer exposes no single 0-1 confidence matching FR-007
 
-**Priority:** High · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`encoding-detection-benchmark.md`](research/encoding-detection-benchmark.md)
+**Priority:** High · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`encoding-detection-benchmark.md`](../research/encoding-detection-benchmark.md)
 
 **Recommendation:** Reword FR-007 and encoding.fail_below_confidence to define the confidence score as 1.0 - CharsetMatch.chaos (the shipping chardet-compat formula, with the -0.2 sub-32-byte penalty), recording chaos/coherence/language separately as Appendix-C.4 provenance rather than blending them into the scalar.
 
@@ -276,7 +276,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-49 — No generation strategy for the 100k synthetic corpus or weird-document fixtures, no public-safe anonymization path
 
-**Priority:** High · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`synthetic-corpus-generation.md`](research/synthetic-corpus-generation.md)
+**Priority:** High · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`synthetic-corpus-generation.md`](../research/synthetic-corpus-generation.md)
 
 **Recommendation:** Adopt a two-corpus architecture: a session-scoped seeded pytest tmp_path_factory 100k-file scale corpus (never committed, behind a slow/scale marker) and a small size-capped git-committed weird-document corpus under tests/fixtures/weird_documents/ (chardet/test-data provenance-decoupled convention), both from one pure seedable generator; and a documented anonymization procedure (capture byte offsets + causal mechanism, re-synthesize the same mechanism through unrelated filler, verify identical code path, reviewer checklist) so real anomalies become content-free fixtures.
 
@@ -366,7 +366,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-20 — No progress/ETA reporting or liveness heartbeat
 
-**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** OQ-010 · **Report:** [`batch-throughput-and-capacity.md`](research/batch-throughput-and-capacity.md)
+**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** OQ-010 · **Report:** [`batch-throughput-and-capacity.md`](../research/batch-throughput-and-capacity.md)
 
 **Recommendation:** Add an NFR/FR tying a Rich progress bar (2-4 Hz refresh, 60-120s speed window) plus a TTY-independent heartbeat log line (every 1,000 files or 30s) to §18.5 Observability, for OQ-010's 8-hour unattended pass.
 
@@ -390,7 +390,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-29 — No schema-versioning/migration policy for artifacts and frontmatter
 
-**Priority:** Medium · **Disposition:** research-only · **Related OQ:** OQ-004 · **Report:** [`json-schema-versioning-migration.md`](research/json-schema-versioning-migration.md)
+**Priority:** Medium · **Disposition:** research-only · **Related OQ:** OQ-004 · **Report:** [`json-schema-versioning-migration.md`](../research/json-schema-versioning-migration.md)
 
 **Recommendation:** Adopt MAJOR.MINOR version strings per schema (Terraform format_version precedent), keep schemas strict (additionalProperties:false) and document honestly that MINOR guarantees only backward compatibility (refuse newer-minor artifacts, matching FR-015 skip-and-report); model already-converted-corpus frontmatter migration as a new first-class planned action (frontmatter_migrate) flowing through plan/dry-run/apply/manifest/verify.
 
@@ -398,7 +398,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-30 — Manifest granularity (per-run vs cumulative ledger) undecided
 
-**Priority:** Medium · **Disposition:** update-existing-oq · **Related OQ:** OQ-004 · **Report:** [`append-safe-manifest-format.md`](research/append-safe-manifest-format.md)
+**Priority:** Medium · **Disposition:** update-existing-oq · **Related OQ:** OQ-004 · **Report:** [`append-safe-manifest-format.md`](../research/append-safe-manifest-format.md)
 
 **Recommendation:** In OQ-004, decide: keep append-only per-run NDJSON ledgers as the permanent source of truth (per GAP-24) plus a small regenerable 'latest state per path' index rewritten atomically at end-of-run for fast multi-run restore lookups.
 
@@ -424,7 +424,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-38 — No disk-space/backup-storage preflight or §14 storage-overhead dimension
 
-**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** OQ-010 · **Report:** [`batch-throughput-and-capacity.md`](research/batch-throughput-and-capacity.md)
+**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** OQ-010 · **Report:** [`batch-throughput-and-capacity.md`](../research/batch-throughput-and-capacity.md)
 
 **Recommendation:** Add a per-mount disk-space preflight (required_free(backup_mount) ~= source_bytes x 1.15; required_free(library_mount) ~= max_file_size x workers x 1.10, each evaluated per distinct mount via shutil.disk_usage) as an OQ-005 gate check, and size the ~2x backup footprint plus transient atomic-temp space in §14.
 
@@ -432,7 +432,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-40 — Path-containment mechanism asserted but not specified (realpath/TOCTOU)
 
-**Priority:** Medium · **Disposition:** research-only · **Related OQ:** OQ-004 · **Report:** [`path-containment-toctou.md`](research/path-containment-toctou.md)
+**Priority:** Medium · **Disposition:** research-only · **Related OQ:** OQ-004 · **Report:** [`path-containment-toctou.md`](../research/path-containment-toctou.md)
 
 **Recommendation:** Specify a two-stage canonical containment check (Path.resolve(strict=False) + is_relative_to(), never lexical-only) run at plan time AND re-run immediately before each write; harden the writer with dir_fd-scoped os.stat/os.open/os.replace + O_NOFOLLOW (leaf) + O_EXCL (temp), probing os.supports_dir_fd; explicitly do NOT build full per-component openat treewalk/chroot given the single-trusted-user threat model.
 
@@ -440,7 +440,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-45 — No Unicode normalization form (NFC/NFD) policy for content or filenames
 
-**Priority:** Medium · **Disposition:** research-only · **Related OQ:** — · **Report:** [`unicode-normalization-policy.md`](research/unicode-normalization-policy.md)
+**Priority:** Medium · **Disposition:** research-only · **Related OQ:** — · **Report:** [`unicode-normalization-policy.md`](../research/unicode-normalization-policy.md)
 
 **Recommendation:** Adopt NFC (never NFD/NFKC/NFKD, which would violate NG-003) as a new mechanical transform: normalize content in the Transform layer after decode and before FR-008/FR-009, normalize filename stems in the Planning layer at target_path computation (keeping source.original_path byte-exact); compute source.hash over raw pre-decode bytes and output.hash over final post-normalization bytes; add an EC row for normalization-induced rename collisions; treat as its own OQ/FR, not a silent fold-in.
 
@@ -464,7 +464,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-50 — Property-based testing required but Hypothesis not in §8.6 dependency policy
 
-**Priority:** Medium · **Disposition:** new-open-question · **Related OQ:** — · **Report:** [`property-based-testing-hypothesis.md`](research/property-based-testing-hypothesis.md) · **New OQ**
+**Priority:** Medium · **Disposition:** new-open-question · **Related OQ:** — · **Report:** [`property-based-testing-hypothesis.md`](../research/property-based-testing-hypothesis.md) · **New OQ**
 
 **Recommendation:** Open an OQ adopting Hypothesis as a dev-only test dependency (in [dependency-groups].dev, never [project.dependencies]) with a CI settings profile loosening/disabling deadline; add the §8.6 row and split §8.6 into Runtime vs Dev/Test subsections since pytest/ruff/basedpyright already sit outside it.
 
@@ -480,7 +480,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-52 — NFR-005 transform-purity has no mechanical enforcement
 
-**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`architecture-and-traceability-enforcement.md`](research/architecture-and-traceability-enforcement.md)
+**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`architecture-and-traceability-enforcement.md`](../research/architecture-and-traceability-enforcement.md)
 
 **Recommendation:** Adopt import-linter (dev dependency) with a forbidden contract barring docmend.transform from importing os/pathlib/shutil/io/docmend.writer, layered with an autouse pytest fixture in tests/unit/transform/conftest.py blocking builtins.open/os.open/io.FileIO at runtime; land both at MS-0 before transform code exists.
 
@@ -488,7 +488,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-53 — §17.3 traceability matrix omits IR/DR rows and has no drift-check automation
 
-**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** OQ-004 · **Report:** [`architecture-and-traceability-enforcement.md`](research/architecture-and-traceability-enforcement.md)
+**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** OQ-004 · **Report:** [`architecture-and-traceability-enforcement.md`](../research/architecture-and-traceability-enforcement.md)
 
 **Recommendation:** Add IR-001..007 and DR-001..005 rows to the §17.3 matrix (confirmed missing) and build scripts/check_traceability.py (dependency-free, PEP 723, mirroring scripts/fix_spec_toc.py) as a generalized ID-registry cross-check wired into a new additive .github/workflows/traceability.yml — do not touch the standard-owned check.py/check.yml twins; the same check also catches the §21 OQ drift.
 
@@ -504,7 +504,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-58 — JSON Schema validator library choice has no OQ despite §8.6 requiring one
 
-**Priority:** Medium · **Disposition:** new-open-question · **Related OQ:** OQ-004 · **Report:** [`json-schema-validator-library.md`](research/json-schema-validator-library.md) · **New OQ**
+**Priority:** Medium · **Disposition:** new-open-question · **Related OQ:** OQ-004 · **Report:** [`json-schema-validator-library.md`](../research/json-schema-validator-library.md) · **New OQ**
 
 **Recommendation:** Open an OQ resolving §8.6's Conditional validator row to jsonschema>=4.26 (with the format-nongpl extra and an explicit Draft202012Validator + FormatChecker), reusing one compiled validator instance per schema across a run; record jsonschema-rs as the pre-vetted escalation path if profiling shows a bottleneck (its own §8.6 OQ) and adopt check-jsonschema only as a pre-commit dev hook, not a runtime dep.
 
@@ -512,7 +512,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-59 — No dependency license policy or license-check tool for §16 and MS-0
 
-**Priority:** Medium · **Disposition:** research-only · **Related OQ:** — · **Report:** [`license-compliance-tooling.md`](research/license-compliance-tooling.md)
+**Priority:** Medium · **Disposition:** research-only · **Related OQ:** — · **Report:** [`license-compliance-tooling.md`](../research/license-compliance-tooling.md)
 
 **Recommendation:** Adopt pip-licenses (dev dependency) with a --allow-only permissive allow-list step in check.yml after the pip-audit step, plus a copyleft-excluded-by-default policy in §8.6 (GPL/AGPL/LGPL/MPL/EPL and anything unlisted requires an OQ + owner approval); do not route through deptry (no license feature) or rely on uv export cyclonedx alone (audit artifact, not a gate).
 
@@ -520,7 +520,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-61 — Review-workflow presupposed by WH-002/C.3 is undesigned and may conflict with headless-CLI/NG-001
 
-**Priority:** Medium · **Disposition:** research-only · **Related OQ:** — · **Report:** [`batch-curation-review-workflow.md`](research/batch-curation-review-workflow.md)
+**Priority:** Medium · **Disposition:** research-only · **Related OQ:** — · **Report:** [`batch-curation-review-workflow.md`](../research/batch-curation-review-workflow.md)
 
 **Recommendation:** Seed a future OQ for WH-002/WH-005: (1) extend FR-015 skip-and-report to segregate 'needs semantic/dedup judgment' skips (beets quiet-mode); (2) for WH-005 build a decision-file/verdict-column side-car artifact (dedupe CSV pattern, no document text, stays inside §13.4/§13.5); (3) for WH-002 treat it as blocked on an explicit owner decision to amend or scope-carve §13.4/§13.5's 'no document content in artifacts' rule, since reviewing a text correction requires showing text; keep review headless (structured files consumed by generic external tools + an apply-corrections/apply-dedup subcommand), default to pessimistic-skip/exception-only to avoid rubber-stamping.
 
@@ -536,7 +536,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-63 — No per-file processing timeout/watchdog requirement or risk row
 
-**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`per-file-watchdog-timeout.md`](research/per-file-watchdog-timeout.md)
+**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`per-file-watchdog-timeout.md`](../research/per-file-watchdog-timeout.md)
 
 **Recommendation:** Add a process-level per-file watchdog (multiprocessing.Process + join(timeout) + terminate()/kill(), zero new dependency, scoped to discovery+encoding-detection+transform, never the writer) plus regex-safety-by-construction (plain string methods first, Python 3.11+ possessive quantifiers/atomic groups for FR-009) and a plan-time max-file-size guard; record as a new ERR-007/R-007 pair with limits.\* config keys.
 
@@ -544,7 +544,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-65 — No requirement that frontmatter/config YAML parsing use a safe loader
 
-**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`safe-yaml-loading.md`](research/safe-yaml-loading.md)
+**Priority:** Medium · **Disposition:** spec-change · **Related OQ:** — · **Report:** [`safe-yaml-loading.md`](../research/safe-yaml-loading.md)
 
 **Recommendation:** Adopt ruamel.yaml>=0.18 (YAML(typ='safe')) as the sole frontmatter loader with allow_duplicate_keys=False (satisfies C-006/FR-016 natively), a timestamp-constructor override keeping date/date-time scalars as strings (so jsonschema format assertions validate strings not datetime objects), a 64 KiB byte cap on the extracted frontmatter block before parsing, and RecursionError caught alongside the loader exception as an FR-015 skip; never call yaml.load/full_load/unsafe_load; add a §13.6 input-parsing checklist line and a §8.6 YAML dependency row.
 
@@ -620,7 +620,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-41 — fsync/atomic-replace guarantees unbounded across filesystems
 
-**Priority:** Low · **Disposition:** research-only · **Related OQ:** — · **Report:** [`atomic-write-filesystem-semantics.md`](research/atomic-write-filesystem-semantics.md)
+**Priority:** Low · **Disposition:** research-only · **Related OQ:** — · **Report:** [`atomic-write-filesystem-semantics.md`](../research/atomic-write-filesystem-semantics.md)
 
 **Recommendation:** Keep D-004/NFR-002 pre-rename fsync exactly as specified (load-bearing on ext4/XFS, not overkill) and make the rationale explicit in §8.3; add /proc/mounts-based filesystem-type detection with a durability classification (strong/weak_network/volatile/union/unknown) threaded into artifacts, hard-refuse tmpfs/ramfs targets, add a case-sensitivity probe feeding FR-011 collision detection, and validate NFR-002's kill-during-write test on ext4+tmpfs (Must) with loopback btrfs/XFS/overlayfs (Should).
 
@@ -636,7 +636,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-54 — 100k-file scale test has no defined CI placement or execution budget
 
-**Priority:** Low · **Disposition:** spec-change · **Related OQ:** OQ-010 · **Report:** [`batch-throughput-and-capacity.md`](research/batch-throughput-and-capacity.md)
+**Priority:** Low · **Disposition:** spec-change · **Related OQ:** OQ-010 · **Report:** [`batch-throughput-and-capacity.md`](../research/batch-throughput-and-capacity.md)
 
 **Recommendation:** Keep a cheap memory-independence assertion in the default check.yml gate but move the full 100k-file scale run to a separate workflow_dispatch + scheduled job, and register a slow/scale pytest marker (none exist despite --strict-markers) so an opt-out exists.
 
@@ -652,7 +652,7 @@ Top three priorities, in order: (a) fix the §21/handoff drift and land the trac
 
 ### GAP-60 — §8.6 runtime deps not in pyproject; no tracked MS-0 task; 3.14 wheel readiness unrecorded
 
-**Priority:** Low · **Disposition:** doc-fix · **Related OQ:** — · **Report:** [`python-314-wheel-readiness.md`](research/python-314-wheel-readiness.md)
+**Priority:** Low · **Disposition:** doc-fix · **Related OQ:** — · **Report:** [`python-314-wheel-readiness.md`](../research/python-314-wheel-readiness.md)
 
 **Recommendation:** Add an explicit TODO/MS-0 task to `uv add` the §8.6 runtime deps (typer, charset-normalizer, pathspec, rich, jsonschema), record that all ship Python 3.14 wheels today (verified via PyPI JSON API), add a CI pre-flight failing the build if any approved-set resolution would need a source build (rpds-py/charset-normalizer), and document lockfile discipline (pin vs range, license/CVE review on new deps) in conventions.md.
 
@@ -728,7 +728,7 @@ Actionable documentation/consistency fixes that need no external research. Sever
 
 ## Deep-research candidates
 
-Four residual questions warranted a heavier ChatGPT Deep-Research pass. The filled prompts live in [`deep-research-queue.md`](deep-research-queue.md).
+Four residual questions warranted a heavier ChatGPT Deep-Research pass. The filled prompts live in [`deep-research-queue.md`](../deep-research-queue.md).
 
 1. **Empirical non-ASCII-byte-count skip-floor for encoding detection on a legacy .txt/.html corpus** — OQ-001 (encoding v1 boundary) and proposed OQ-015 (encoding detector/thresholds); docs/research/encoding-detection-benchmark.md; spec FR-007, §18.2
 2. **CPython free-threading (Phase III / default-build) timeline and re-open criteria for the concurrency choice** — OQ-010 (performance) and proposed OQ-016 (concurrency primitive); docs/research/python-314-concurrency-model.md; spec NFR-001, §14
@@ -737,36 +737,36 @@ Four residual questions warranted a heavier ChatGPT Deep-Research pass. The fill
 
 ## Research reports produced
 
-22 reports written to [`research/`](research/) this pass:
+22 reports written to [`research/`](../research) this pass:
 
 | Report | Topic |
 | --- | --- |
-| [`encoding-detection-benchmark.md`](research/encoding-detection-benchmark.md) | Encoding detection at corpus scale: detector choice, confidence semantics, threshold |
-| [`python-314-concurrency-model.md`](research/python-314-concurrency-model.md) | Concurrency model for a CPU-bound file pipeline on Python 3.14 |
-| [`python-314-wheel-readiness.md`](research/python-314-wheel-readiness.md) | Python 3.14 wheel readiness for the approved dependency set |
-| [`append-safe-manifest-format.md`](research/append-safe-manifest-format.md) | Crash-safe, append-safe on-disk manifest representation |
-| [`atomic-write-filesystem-semantics.md`](research/atomic-write-filesystem-semantics.md) | Atomic-replace and directory-fsync guarantees across filesystems |
-| [`path-containment-toctou.md`](research/path-containment-toctou.md) | Path-containment algorithm and TOCTOU symlink-race mitigation |
-| [`stable-document-id-scheme.md`](research/stable-document-id-scheme.md) | Stable document ID scheme surviving renames and full rewrites |
-| [`json-schema-versioning-migration.md`](research/json-schema-versioning-migration.md) | JSON Schema versioning and migration policy |
-| [`json-schema-validator-library.md`](research/json-schema-validator-library.md) | JSON Schema validator library selection at scale |
-| [`unicode-normalization-policy.md`](research/unicode-normalization-policy.md) | Unicode normalization-form policy for content and filenames |
-| [`structured-logging-library.md`](research/structured-logging-library.md) | Structured logging library and format for a long-running batch CLI |
-| [`batch-throughput-and-capacity.md`](research/batch-throughput-and-capacity.md) | Throughput, memory, disk-overhead, and progress-reporting budget for a 100k-file pass |
-| [`synthetic-corpus-generation.md`](research/synthetic-corpus-generation.md) | Synthetic corpus generation and public-safe anonymization of real anomalies |
-| [`property-based-testing-hypothesis.md`](research/property-based-testing-hypothesis.md) | Property-based testing library for transform purity and edge cases |
-| [`architecture-and-traceability-enforcement.md`](research/architecture-and-traceability-enforcement.md) | Mechanical enforcement of architecture invariants and requirement traceability |
-| [`license-compliance-tooling.md`](research/license-compliance-tooling.md) | Dependency license-scanning tooling and policy for a uv/PEP 621 project |
-| [`batch-curation-review-workflow.md`](research/batch-curation-review-workflow.md) | Report-driven review workflow for a headless batch curation tool |
-| [`per-file-watchdog-timeout.md`](research/per-file-watchdog-timeout.md) | Per-file watchdog/timeout for pathological inputs in a batch pipeline |
-| [`combinatorial-safety-gate-testing.md`](research/combinatorial-safety-gate-testing.md) | Combinatorial testing strategy for the multi-check safety gate |
-| [`restore-from-manifest-design.md`](research/restore-from-manifest-design.md) | Restore-from-manifest tooling and drill design |
-| [`safe-yaml-loading.md`](research/safe-yaml-loading.md) | Safe YAML loading and hardening for parsing legacy frontmatter |
-| [`backup-integrity-verification.md`](research/backup-integrity-verification.md) | Backup integrity verification and preservation-strategy proof |
+| [`encoding-detection-benchmark.md`](../research/encoding-detection-benchmark.md) | Encoding detection at corpus scale: detector choice, confidence semantics, threshold |
+| [`python-314-concurrency-model.md`](../research/python-314-concurrency-model.md) | Concurrency model for a CPU-bound file pipeline on Python 3.14 |
+| [`python-314-wheel-readiness.md`](../research/python-314-wheel-readiness.md) | Python 3.14 wheel readiness for the approved dependency set |
+| [`append-safe-manifest-format.md`](../research/append-safe-manifest-format.md) | Crash-safe, append-safe on-disk manifest representation |
+| [`atomic-write-filesystem-semantics.md`](../research/atomic-write-filesystem-semantics.md) | Atomic-replace and directory-fsync guarantees across filesystems |
+| [`path-containment-toctou.md`](../research/path-containment-toctou.md) | Path-containment algorithm and TOCTOU symlink-race mitigation |
+| [`stable-document-id-scheme.md`](../research/stable-document-id-scheme.md) | Stable document ID scheme surviving renames and full rewrites |
+| [`json-schema-versioning-migration.md`](../research/json-schema-versioning-migration.md) | JSON Schema versioning and migration policy |
+| [`json-schema-validator-library.md`](../research/json-schema-validator-library.md) | JSON Schema validator library selection at scale |
+| [`unicode-normalization-policy.md`](../research/unicode-normalization-policy.md) | Unicode normalization-form policy for content and filenames |
+| [`structured-logging-library.md`](../research/structured-logging-library.md) | Structured logging library and format for a long-running batch CLI |
+| [`batch-throughput-and-capacity.md`](../research/batch-throughput-and-capacity.md) | Throughput, memory, disk-overhead, and progress-reporting budget for a 100k-file pass |
+| [`synthetic-corpus-generation.md`](../research/synthetic-corpus-generation.md) | Synthetic corpus generation and public-safe anonymization of real anomalies |
+| [`property-based-testing-hypothesis.md`](../research/property-based-testing-hypothesis.md) | Property-based testing library for transform purity and edge cases |
+| [`architecture-and-traceability-enforcement.md`](../research/architecture-and-traceability-enforcement.md) | Mechanical enforcement of architecture invariants and requirement traceability |
+| [`license-compliance-tooling.md`](../research/license-compliance-tooling.md) | Dependency license-scanning tooling and policy for a uv/PEP 621 project |
+| [`batch-curation-review-workflow.md`](../research/batch-curation-review-workflow.md) | Report-driven review workflow for a headless batch curation tool |
+| [`per-file-watchdog-timeout.md`](../research/per-file-watchdog-timeout.md) | Per-file watchdog/timeout for pathological inputs in a batch pipeline |
+| [`combinatorial-safety-gate-testing.md`](../research/combinatorial-safety-gate-testing.md) | Combinatorial testing strategy for the multi-check safety gate |
+| [`restore-from-manifest-design.md`](../research/restore-from-manifest-design.md) | Restore-from-manifest tooling and drill design |
+| [`safe-yaml-loading.md`](../research/safe-yaml-loading.md) | Safe YAML loading and hardening for parsing legacy frontmatter |
+| [`backup-integrity-verification.md`](../research/backup-integrity-verification.md) | Backup integrity verification and preservation-strategy proof |
 
 ## New open questions raised
 
-Six gaps were genuine undecided decisions and became open questions (full agent notes in [`open-questions.md`](open-questions.md)):
+Six gaps were genuine undecided decisions and became open questions (full agent notes in [`open-questions.md`](../open-questions.md)):
 
 - **OQ-015** — encoding detector, confidence signal, and dual skip thresholds (High, blocking, needed by MS-2)
 - **OQ-016** — CPU-bound concurrency primitive for the Python 3.14 target (High, non-blocking, needed by MS-3)
@@ -786,7 +786,7 @@ Six gaps were genuine undecided decisions and became open questions (full agent 
 
 ## Addendum — `python-library-research.md` reconciliation (2026-07-05)
 
-A separate owner-authored ChatGPT Deep-Research report, [`research/python-library-research.md`](research/python-library-research.md), gives a whole-stack Python dependency posture. It is a companion to the targeted per-library reports and mostly ratifies the existing open questions. Reconciliation:
+A separate owner-authored ChatGPT Deep-Research report, [`research/python-library-research.md`](../research/python-library-research.md), gives a whole-stack Python dependency posture. It is a companion to the targeted per-library reports and mostly ratifies the existing open questions. Reconciliation:
 
 - **New decisions raised:** OQ-021 (`pydantic` v2 for internal artifact/config models) and OQ-022 (frontmatter YAML codec — `ruamel.yaml` vs `PyYAML`), both added to `open-questions.md` and spec §21. Appendix B.2 requires an OQ before either dependency lands.
 - **Conflict flagged:** the report recommends stdlib `logging` over `structlog`, opposite to OQ-017's recommendation; recorded as a research-update on OQ-017 for the owner to decide.

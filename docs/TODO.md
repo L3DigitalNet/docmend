@@ -13,10 +13,10 @@ Instructions for AI agents:
 
 ## User tasks
 
-- [ ] Adopt Go. Migrate. Use Worker Pools:
+- [ ] Explore bounded Go utilities, including a worker-pool utility where justified. The docmend product remains Python:
 
 ````markdown
-To process a massive number of files efficiently, we use a **Worker Pool** pattern. Instead of spawning one million goroutines at once (which could overwhelm your OS file descriptors or memory), we spawn a fixed number of "workers" (e.g., 100) that constantly pull file paths from a queue until the queue is empty.
+For a standalone utility that processes many files efficiently, use a **Worker Pool** pattern. Do not treat this example as a docmend product-migration design. Instead of spawning one million goroutines at once (which could overwhelm OS file descriptors or memory), spawn a fixed number of "workers" (e.g., 100) that constantly pull file paths from a queue until the queue is empty.
 
 Here are the three core pieces that make this work:
 

@@ -8,14 +8,14 @@
 
 ## Project
 
-`docmend` is a Python CLI tool (v1.0.2 released 2026-07-07 — the full scan/plan/apply/restore/verify pipeline is live) for normalizing, repairing, and converting a large library (>100k files) of legacy `.txt`/`.html` documents into clean, well-structured Markdown.
+`docmend` is a Python CLI tool (v2.0.2 released 2026-07-22 — the full scan/plan/apply/restore/verify pipeline is live) for normalizing, repairing, and converting a large library (>100k files) of legacy `.txt`/`.html` documents into clean, well-structured Markdown.
 
 Read [`docs/specs/docmend.md`](docs/specs/docmend.md) (SPEC-VHHB, `full` profile, binding Agent Implementation Contract in Appendix B) before proposing any implementation.
 
 ## Task Tracking
 
 - [`docs/TODO.md`](docs/TODO.md) — user tasks above agent tasks; don't complete a user task unless asked.
-- [`docs/repo-hygiene.md`](docs/repo-hygiene.md) — periodic repository hygiene checklist for cleanup and maintenance passes.
+- [`docs/repo-hygiene.md`](docs/workflows/repo-hygiene.md) — periodic repository hygiene checklist for cleanup and maintenance passes.
 - [`docs/open-questions.md`](docs/open-questions.md) / [`docs/resolved-questions.md`](docs/resolved-questions.md) — the spec's `OQ-`/`RQ-` decision backlog.
 
 ## Non-Negotiables
@@ -28,7 +28,7 @@ Read [`docs/specs/docmend.md`](docs/specs/docmend.md) (SPEC-VHHB, `full` profile
 
 - Full `review-orchestrator` sweeps now run selected child reviews with bounded parallelism by default, currently up to `8` in parallel after planning, preflight, and shared research complete.
 - The shared-research phase can legitimately take around `10` minutes on larger or research-heavy repos before child reviews start, so treat that as normal unless heartbeats stop or no artifact activity appears beyond that window.
-- Expect the sweep index, child review reports, and `*-execution.json` manifests under `docs/codex-reviews/` while the sweep is running.
+- Expect the sweep index, child review reports, and `*-execution.json` manifests under `docs/reviews/` while the sweep is running.
 - Do not describe sweep child reviews as running “one at a time” unless the sweep was explicitly configured down to serial execution.
 
 Go work uses the module and toolchain declared in `go.mod`. Install pinned tools with `make go-tools`, use `make go-format` for fixes, and run `make go-check` before reporting Go changes complete.

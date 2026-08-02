@@ -1,6 +1,6 @@
 # Million-File Scale and Resource Contract Design
 
-Approved design for closing DMR-08 from the [comprehensive review synthesis](../../codex-reviews/2026-07-10-2034-comprehensive-review-synthesis.md) before docmend v2.0.0. This document replaces the historical 100,000-file acceptance floor with a one-million-file release qualification and reconciles the binding specification with the implementation's actual whole-run artifact model.
+Approved design for closing DMR-08 from the comprehensive review synthesis before docmend v2.0.0. This document replaces the historical 100,000-file acceptance floor with a one-million-file release qualification and reconciles the binding specification with the implementation's actual whole-run artifact model.
 
 Owner decisions recorded in the design conversation:
 
