@@ -34,6 +34,7 @@ related:
     - 'docs/adr/adr-0021-artifact-destination-guard.md'
     - 'docs/adr/adr-0022-sequential-million-file-scale-contract.md'
     - 'docs/adr/adr-0023-adopt-markdown-frontmatter-for-adrs.md'
+    - 'docs/adr/adr-0024-adopt-go-alongside-python-with-neutral-tooling.md'
   tickets: []
   repositories: []
   prior_specs:

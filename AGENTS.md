@@ -31,6 +31,8 @@ Read [`docs/specs/docmend.md`](docs/specs/docmend.md) (SPEC-VHHB, `full` profile
 - Expect the sweep index, child review reports, and `*-execution.json` manifests under `docs/codex-reviews/` while the sweep is running.
 - Do not describe sweep child reviews as running “one at a time” unless the sweep was explicitly configured down to serial execution.
 
+Go work uses the module and toolchain declared in `go.mod`. Install pinned tools with `make go-tools`, use `make go-format` for fixes, and run `make go-check` before reporting Go changes complete.
+
 <!-- prettier-ignore-start -->
 
 <!-- BEGIN project-standards:agent-handoff -->

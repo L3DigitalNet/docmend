@@ -27,6 +27,7 @@ Sequential index of docmend's Architecture Decision Records. See [README.md](REA
 | [0021](adr-0021-artifact-destination-guard.md) | Artifact destination guard | accepted | 2026-07-10 | 2026-07-10 review DMR-02 |
 | [0022](adr-0022-sequential-million-file-scale-contract.md) | Sequential million-file scale contract | accepted | 2026-07-11 | RQ-037; DMR-08 |
 | [0023](adr-0023-adopt-markdown-frontmatter-for-adrs.md) | Adopt Markdown Frontmatter for ADRs | accepted | 2026-08-01 | D-008; supersedes 0001 |
+| [0024](adr-0024-adopt-go-alongside-python-with-neutral-tooling.md) | Adopt Go alongside Python with neutral tooling | accepted | 2026-08-02 | owner decision; tooling lane |
 
 ## Candidates not yet written
 

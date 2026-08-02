@@ -3,7 +3,8 @@
 ## Current snapshot
 
 - docmend v2.0.2 is released with the complete scan, plan, apply, restore, resume, and verify pipeline; 2.0.2 is a maintenance release (Project Standards v5.3.1 tooling migration plus the 2026-07-21 simplification refactors) on top of 2.0.1's 2026-07-19 comprehensive-review remediation (26 findings, none Critical/High — `docs/fable-review/2026-07-19-docmend-review.md`).
-- SPEC-VHHB revision 0.45 and ADRs 0001-0023 govern landed post-v1 changes.
+- SPEC-VHHB revision 0.45 and ADRs 0001-0024 govern landed post-v1 changes.
+- ADR-0024 establishes a neutral Go tooling lane alongside Python; it does not authorize a migration or language preference.
 - ADR-0023 supersedes ADR-0001 and adopts Markdown Frontmatter validation for ADR metadata only.
 - Product-output and Project Spec frontmatter remain under their independent schemas.
 - The current `dev` baseline is 1,728 passing tests with no skips on a non-root runner (four permission-bit tests skip only when run as root), 89% branch coverage, and no known dependency vulnerabilities.

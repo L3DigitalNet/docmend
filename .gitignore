@@ -230,3 +230,6 @@ __marimo__/
 
 # Specification-authoring drafts are promoted only after validation.
 .project-pipeline/
+
+# Repository-local executable Go tools installed by `make go-tools`.
+.tools/

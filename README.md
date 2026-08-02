@@ -93,7 +93,13 @@ uv run ruff format --check . && uv run ruff check .
 uv run basedpyright
 uv run coverage run -m pytest && uv run coverage report
 uv run pip-audit
+
+# Go gate. Install pinned repository-local tools once per checkout.
+make go-tools
+make go-check
 ```
+
+CI runs the Go gate when Go-owned files change.
 
 The rationale for this model — and why it diverges from the sibling `hw-radar` repo it is ported from — is recorded in [`docs/adr/adr-0017-branch-and-ci-cd-workflow.md`](docs/adr/adr-0017-branch-and-ci-cd-workflow.md).
 
