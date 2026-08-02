@@ -18,7 +18,7 @@ tags:
 aliases: []
 related:
   - 'docs/specs/docmend.md'
-  - 'docs/specs/2026-07-10-safety-core-remediation-design.md'
+  - 'docs/designs/2026-07-10-safety-core-remediation-design.md'
   - 'docs/adr/adr-0003-in-place-mutation-output-model.md'
   - 'docs/adr/adr-0004-apply-safety-gate-and-preservation.md'
   - 'docs/adr/adr-0019-manifest-2-recovery-model.md'
@@ -75,7 +75,7 @@ Confirmed by deterministic hook-driven race tests: regular-file replacement afte
 
 ## More Information
 
-- Mechanism detail and residual-window statement: `docs/specs/2026-07-10-safety-core-remediation-design.md` (Commit Boundary section; review findings F2/F3 closed).
+- Mechanism detail and residual-window statement: `docs/designs/2026-07-10-safety-core-remediation-design.md` (Commit Boundary section; review findings F2/F3 closed).
 - Spec: rev 0.26 — FR-003, FR-005, FR-011, §13.5.
 - The action-time overwrite invariant and `WriteSafetyContext` engine gating are recorded as the 2026-07-10 amendment to `adr-0004-apply-safety-gate-and-preservation`; this ADR owns the identity mechanics they rely on.
 - Revisit if a Linux-only deployment ever justifies `renameat2`-based elimination of the residual window, or if a filesystem without stable `(st_dev, st_ino)` semantics must be supported.
