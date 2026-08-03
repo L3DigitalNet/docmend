@@ -11,7 +11,7 @@ jobs:
   lint-markdown:
     permissions:
       contents: read
-    uses: L3DigitalNet/project-standards/.github/workflows/lint-markdown.yml@v5
+    uses: L3DigitalNet/project-standards/.github/workflows/lint-markdown.yml@v5.11.0
     with:
       markdownlint: true
       globs: "**/*.md\n!.pytest_cache/**\n!.ruff_cache/**\n!.venv/**\n!node_modules/**"

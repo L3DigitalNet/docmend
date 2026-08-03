@@ -11,7 +11,7 @@ jobs:
   format:
     permissions:
       contents: read
-    uses: L3DigitalNet/project-standards/.github/workflows/format.yml@v5
+    uses: L3DigitalNet/project-standards/.github/workflows/format.yml@v5.11.0
     with:
       prettier: true
       globs: "**/*.md\n**/*.json\n**/*.jsonc\n**/*.yml\n**/*.yaml"

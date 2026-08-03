@@ -1,7 +1,7 @@
 jobs:
   frontmatter:
     name: Frontmatter
-    uses: L3DigitalNet/project-standards/.github/workflows/validate-markdown-frontmatter.yml@v5
+    uses: L3DigitalNet/project-standards/.github/workflows/validate-markdown-frontmatter.yml@v5.11.0
 name: Validate project standards
 "on":
   pull_request: {}
