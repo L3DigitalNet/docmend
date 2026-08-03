@@ -2,11 +2,11 @@
 
 Python tool to normalize, fix, convert, manage, and maintain large libraries of text and markdown documents.
 
-> **Status:** [v2.0.0 released](https://github.com/chrisdpurcell/docmend/releases/tag/v2.0.0) (2026-07-18; see [CHANGELOG.md](CHANGELOG.md)). The design is complete (see [`docs/specs/docmend.md`](docs/specs/docmend.md)) and the whole pipeline is live: `docmend scan` inventories a file or directory tree read-only, `docmend plan` turns that inventory into a reviewable plan, `docmend apply` executes a reviewed plan (dry-run by default, gated writes, atomic mutation, a reversible manifest) and survives interruption — `apply --resume-run-id`/`--resume-manifest` completes an interrupted run without redoing finished work — `docmend restore` undoes an apply run, and `docmend verify` checks converted output read-only. Re-runs are idempotent. The configured 100 MiB file-size envelope and the sequential million-file workflow have accepted installed-wheel qualification evidence.
+> **Status:** [v2.0.2 released](https://github.com/chrisdpurcell/docmend/releases/tag/v2.0.2) (2026-07-22; see [CHANGELOG.md](CHANGELOG.md)). The design is complete (see [`docs/specs/docmend.md`](docs/specs/docmend.md)) and the whole pipeline is live: `docmend scan` inventories a file or directory tree read-only, `docmend plan` turns that inventory into a reviewable plan, `docmend apply` executes a reviewed plan (dry-run by default, gated writes, atomic mutation, a reversible manifest) and survives interruption — `apply --resume-run-id`/`--resume-manifest` completes an interrupted run without redoing finished work — `docmend restore` undoes an apply run, and `docmend verify` checks converted output read-only. Re-runs are idempotent. The configured 100 MiB file-size envelope and the sequential million-file workflow have accepted installed-wheel qualification evidence.
 
 ## Commands
 
-The canonical option-by-option reference is [`docs/usage.md`](docs/usage.md); this section is the task-oriented overview.
+The canonical option-by-option reference is [`docs/usage/usage.md`](docs/usage/usage.md); this section is the task-oriented overview.
 
 All commands work on a single file as well as a directory tree — the pipeline scales down without extra setup. Run artifacts (inventory, plan, report, manifest, log) default into `./.docmend/` in the invoking directory, keyed by run ID.
 
@@ -93,7 +93,13 @@ uv run ruff format --check . && uv run ruff check .
 uv run basedpyright
 uv run coverage run -m pytest && uv run coverage report
 uv run pip-audit
+
+# Go gate. Install pinned repository-local tools once per checkout.
+make go-tools
+make go-check
 ```
+
+CI runs the Go gate when Go-owned files change.
 
 The rationale for this model — and why it diverges from the sibling `hw-radar` repo it is ported from — is recorded in [`docs/adr/adr-0017-branch-and-ci-cd-workflow.md`](docs/adr/adr-0017-branch-and-ci-cd-workflow.md).
 

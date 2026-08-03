@@ -357,8 +357,131 @@ def _object_shapes(
                 _object_shapes(item, root, f"{path}[]", out)
 
 
+type SemanticConstraints = tuple[frozenset[str], frozenset[object], frozenset[object]]
+
+
+def _json_types(node: dict[str, object]) -> set[str]:
+    """Return the JSON types constrained directly by one schema node."""
+    types: set[str] = set()
+    value = node.get("type")
+    if isinstance(value, str):
+        types.add(value)
+    elif isinstance(value, list):
+        types.update(item for item in cast("list[object]", value) if isinstance(item, str))
+    if "const" in node:
+        types.add(_value_type(node["const"]))
+    enum = node.get("enum")
+    if isinstance(enum, list):
+        types.update(_value_type(item) for item in cast("list[object]", enum))
+    return types
+
+
+def _value_type(value: object) -> str:
+    if value is None:
+        return "null"
+    if isinstance(value, bool):
+        return "boolean"
+    if isinstance(value, int):
+        return "integer"
+    if isinstance(value, float):
+        return "number"
+    if isinstance(value, str):
+        return "string"
+    raise AssertionError(f"non-scalar schema constraint value: {value!r}")
+
+
+def _semantic_constraints(
+    node: dict[str, object],
+    root: dict[str, object],
+    path: str,
+    out: dict[str, SemanticConstraints],
+) -> None:
+    """Collect type, enum, and const constraints for every schema field.
+
+    The hand-authored schemas intentionally add path and date-time constraints
+    that Pydantic cannot express. This verifies the opposite direction: every
+    JSON type or literal the model can emit must be accepted by the durable
+    contract, while allowing the contract to impose additional validation.
+    """
+    node = _resolve(node, root)
+    has_children = False
+    properties = node.get("properties")
+    if isinstance(properties, dict):
+        has_children = True
+        for name, sub in cast("dict[str, dict[str, object]]", properties).items():
+            _semantic_constraints(sub, root, f"{path}.{name}" if path else name, out)
+
+    items = node.get("items")
+    if isinstance(items, dict):
+        has_children = True
+        _semantic_constraints(cast("dict[str, object]", items), root, f"{path}[]", out)
+
+    for keyword in ("oneOf", "anyOf", "allOf"):
+        branches = node.get(keyword)
+        if isinstance(branches, list):
+            has_children = True
+            for branch in cast("list[dict[str, object]]", branches):
+                _semantic_constraints(branch, root, path, out)
+
+    if has_children:
+        return
+    enum = node.get("enum")
+    enum_values: frozenset[object] = frozenset()
+    if isinstance(enum, list):
+        enum_values = frozenset(cast("list[object]", enum))
+    const_values: frozenset[object] = frozenset()
+    if "const" in node:
+        const_values = frozenset((node["const"],))
+    types = frozenset(_json_types(node))
+    if not (types or enum_values or const_values):
+        return
+    previous = out.get(path, (frozenset(), frozenset(), frozenset()))
+    out[path] = (
+        previous[0] | types,
+        previous[1] | enum_values,
+        previous[2] | const_values,
+    )
+
+
+def _assert_semantic_compatibility(
+    hand_schema: dict[str, object],
+    model_schema: dict[str, object],
+    *,
+    excluded_prefixes: tuple[str, ...] = (),
+) -> None:
+    hand: dict[str, SemanticConstraints] = {}
+    model: dict[str, SemanticConstraints] = {}
+    _semantic_constraints(hand_schema, hand_schema, "", hand)
+    _semantic_constraints(model_schema, model_schema, "", model)
+    for path, expected in model.items():
+        if any(path == prefix or path.startswith(f"{prefix}.") for prefix in excluded_prefixes):
+            continue
+        assert path in hand, f"model semantic field missing from durable schema: {path!r}"
+        actual = hand[path]
+        assert expected[0] <= actual[0], f"durable schema rejects model JSON types at {path!r}"
+        model_literals = expected[2] or expected[1]
+        hand_literals = actual[2] or actual[1]
+        if model_literals and hand_literals:
+            assert model_literals <= hand_literals, (
+                f"durable schema rejects model literal values at {path!r}"
+            )
+
+
 class TestPydanticCrossCheck:
     """spec: DR-001 — the internal model and external contract cannot drift apart."""
+
+    def test_semantic_compatibility__rejects_unaccepted_model_literal(self) -> None:
+        hand_schema: dict[str, object] = {
+            "type": "object",
+            "properties": {"mode": {"enum": ["safe"]}},
+        }
+        model_schema: dict[str, object] = {
+            "type": "object",
+            "properties": {"mode": {"enum": ["unsafe"]}},
+        }
+
+        with pytest.raises(AssertionError, match="literal values"):
+            _assert_semantic_compatibility(hand_schema, model_schema)
 
     def test_inventory_model__matches_hand_authored_schema(self) -> None:
         hand: dict[str, tuple[set[str], set[str]]] = {}
@@ -375,6 +498,7 @@ class TestPydanticCrossCheck:
             # The model may require less (fields with defaults are always emitted
             # anyway) but must never require MORE than the durable contract.
             assert model_required <= hand_required, f"model over-requires at {path!r}"
+        _assert_semantic_compatibility(load_schema("inventory"), emitted)
 
     def test_plan_model__matches_hand_authored_schema(self) -> None:
         hand: dict[str, tuple[set[str], set[str]]] = {}
@@ -398,6 +522,9 @@ class TestPydanticCrossCheck:
             model_props, model_required = model[path]
             assert hand_props == model_props, f"property names differ at {path!r}"
             assert model_required <= hand_required, f"model over-requires at {path!r}"
+        _assert_semantic_compatibility(
+            load_schema("plan"), emitted, excluded_prefixes=("config", "source_root")
+        )
 
     def test_manifest_model__matches_hand_authored_schema(self) -> None:
         hand: dict[str, tuple[set[str], set[str]]] = {}
@@ -414,6 +541,7 @@ class TestPydanticCrossCheck:
             # overwritten_sha256/overwritten_backup_path (1.1) default to None
             # and are therefore never in the model's required set — expected.
             assert model_required <= hand_required, f"model over-requires at {path!r}"
+        _assert_semantic_compatibility(load_schema("manifest"), emitted)
 
     def test_report_model__matches_hand_authored_schema(self) -> None:
         hand: dict[str, tuple[set[str], set[str]]] = {}
@@ -428,6 +556,7 @@ class TestPydanticCrossCheck:
             model_props, model_required = model[path]
             assert hand_props == model_props, f"property names differ at {path!r}"
             assert model_required <= hand_required, f"model over-requires at {path!r}"
+        _assert_semantic_compatibility(load_schema("report"), emitted)
 
     def test_verify_report_model__matches_hand_authored_schema(self) -> None:
         hand: dict[str, tuple[set[str], set[str]]] = {}
@@ -442,6 +571,7 @@ class TestPydanticCrossCheck:
             model_props, model_required = model[path]
             assert hand_props == model_props, f"property names differ at {path!r}"
             assert model_required <= hand_required, f"model over-requires at {path!r}"
+        _assert_semantic_compatibility(load_schema("verify-report"), emitted)
 
     @pytest.mark.parametrize(
         ("kind", "model_class"),

@@ -112,14 +112,64 @@ def test_record_without_oq_row(tmp_path: Path) -> None:
 
 def test_progress_claim_requires_test_mention(tmp_path: Path) -> None:
     spec = CLEAN_SPEC.replace(
-        "| FR-001 | Frob test. | Not Started |", "| FR-001 | Frob test. | Done |"
+        "| FR-001 | Frob test. | Not Started |", "| FR-001 | `tests/test_stub.py`. | Done |"
     )
     untested = run(make_tree(tmp_path / "untested", spec=spec))
     assert untested.returncode == 1
-    assert "claim progress" in untested.stdout
+    assert "evidence files do not mention" in untested.stdout
 
     tested = run(make_tree(tmp_path / "tested", spec=spec, test_source="# spec: FR-001\n"))
     assert tested.returncode == 0
+
+
+def test_progress_claim_requires_named_test_file(tmp_path: Path) -> None:
+    spec = CLEAN_SPEC.replace(
+        "| FR-001 | Frob test. | Not Started |", "| FR-001 | Frob test. | Done |"
+    )
+    result = run(make_tree(tmp_path, spec=spec, test_source="# spec: FR-001\n"))
+    assert result.returncode == 1
+    assert "names no tests/*.py evidence" in result.stdout
+
+
+def test_progress_claim_rejects_missing_named_test_file(tmp_path: Path) -> None:
+    spec = CLEAN_SPEC.replace(
+        "| FR-001 | Frob test. | Not Started |", "| FR-001 | `tests/test_missing.py`. | Done |"
+    )
+    result = run(make_tree(tmp_path, spec=spec))
+    assert result.returncode == 1
+    assert "missing test evidence" in result.stdout
+
+
+def test_progress_claim_requires_requirement_id_in_named_evidence(tmp_path: Path) -> None:
+    spec = CLEAN_SPEC.replace(
+        "| FR-001 | Frob test. | Not Started |", "| FR-001 | `tests/test_stub.py`. | Done |"
+    )
+    result = run(make_tree(tmp_path, spec=spec, test_source="# spec: NFR-001\n"))
+    assert result.returncode == 1
+    assert "evidence files do not mention the requirement ID" in result.stdout
+
+
+def test_progress_claim_validates_explicit_test_selector(tmp_path: Path) -> None:
+    spec = CLEAN_SPEC.replace(
+        "| FR-001 | Frob test. | Not Started |",
+        "| FR-001 | `tests/test_stub.py::test_frob`. | Done |",
+    )
+    result = run(
+        make_tree(
+            tmp_path, spec=spec, test_source="def test_frob():\n    # spec: FR-001\n    pass\n"
+        )
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+
+
+def test_progress_claim_rejects_missing_explicit_test_selector(tmp_path: Path) -> None:
+    spec = CLEAN_SPEC.replace(
+        "| FR-001 | Frob test. | Not Started |",
+        "| FR-001 | `tests/test_stub.py::test_missing`. | Done |",
+    )
+    result = run(make_tree(tmp_path, spec=spec, test_source="# spec: FR-001\n"))
+    assert result.returncode == 1
+    assert "missing test selector" in result.stdout
 
 
 def test_changed_layout_exits_two(tmp_path: Path) -> None:

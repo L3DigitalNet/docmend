@@ -2,7 +2,7 @@
 
 import os
 import subprocess
-from collections.abc import Callable, Mapping, Sequence
+from collections.abc import Callable, Iterable, Mapping, Sequence
 from dataclasses import replace
 from datetime import UTC, datetime, timedelta
 from pathlib import Path
@@ -21,7 +21,7 @@ from docmend.scale_build import (
     CandidateWorkspaceLease,
     SourceProvenance,
 )
-from docmend.scale_corpus import ScaleCorpusSummary, recipe_counts
+from docmend.scale_corpus import ScaleCorpusSummary, recipe_counts, summarize_scale_corpus
 from docmend.scale_evidence import (
     ArtifactSizeName,
     FilesystemCapacityEvidence,
@@ -65,7 +65,13 @@ from docmend.scale_reconcile import (
     PipelineReconciliation,
     QualificationFailure,
 )
-from docmend.scale_resources import ResourcePreflightError
+from docmend.scale_resources import (
+    CapacityCheck,
+    MountFlagProjection,
+    ReferenceObservation,
+    Requirement,
+    ResourcePreflightError,
+)
 from docmend.scale_stage import StageRequest, StageResult
 
 SHA_A = "sha256:" + "a" * 64
@@ -86,6 +92,32 @@ def _reference() -> ReferenceEnvironment:
         mount_flags=("rw", "relatime"),
         python_version="3.14.0",
         kernel_version="6.12.0",
+    )
+
+
+def _preflight_paths(tmp_path: Path) -> QualificationWorkspacePaths:
+    root = tmp_path / "preflight-workspace"
+    root.mkdir()
+    paths = QualificationWorkspacePaths.beneath(root)
+    paths.pipeline.mkdir()
+    paths.supervisor.mkdir()
+    return paths
+
+
+def _capacity_check(*, passed: bool) -> CapacityCheck:
+    return CapacityCheck(
+        ok=passed,
+        filesystems=(
+            FilesystemCapacityEvidence(
+                required_bytes=1,
+                available_bytes=2 if passed else 0,
+                required_inodes=1,
+                inode_capacity_mode="finite-statvfs",
+                available_inodes=2 if passed else 0,
+                margin_fraction=0.25,
+                passed=passed,
+            ),
+        ),
     )
 
 
@@ -118,6 +150,138 @@ def _qualification_argv(paths: Mapping[str, Path], *extra: str) -> list[str]:
         str(paths["evidence"]),
         *extra,
     ]
+
+
+def test_default_candidate_preflight__propagates_reference_observation_failure(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from docmend import scale_qualification
+
+    paths = _preflight_paths(tmp_path)
+
+    def fail_observation(_workspace: Path) -> ReferenceObservation:
+        raise ResourcePreflightError("synthetic observation failure")
+
+    monkeypatch.setattr(scale_qualification, "observe_reference_environment", fail_observation)
+
+    with pytest.raises(ResourcePreflightError, match="synthetic observation failure"):
+        DefaultCandidateRuntime().preflight(
+            paths,
+            summarize_scale_corpus(40, fragment_size=os.statvfs(paths.root).f_frsize),
+            _reference(),
+        )
+
+
+def test_default_candidate_preflight__records_success_and_closes_held_placements(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from docmend import scale_qualification
+
+    paths = _preflight_paths(tmp_path)
+    fragment_size = os.statvfs(paths.root).f_frsize
+    observation = ReferenceObservation(
+        environment=_reference(),
+        mount_projection=MountFlagProjection(flags=("rw", "relatime"), complete=True),
+        fragment_size=fragment_size,
+    )
+    captured: list[Requirement] = []
+
+    def return_observation(_workspace: Path) -> ReferenceObservation:
+        return observation
+
+    def record_capacity(requirements: Iterable[Requirement]) -> CapacityCheck:
+        captured.extend(requirements)
+        return _capacity_check(passed=True)
+
+    monkeypatch.setattr(scale_qualification, "observe_reference_environment", return_observation)
+    monkeypatch.setattr(scale_qualification, "check_capacity", record_capacity)
+
+    evidence = DefaultCandidateRuntime().preflight(
+        paths,
+        summarize_scale_corpus(40, fragment_size=fragment_size),
+        _reference(),
+    )
+
+    assert evidence.passed
+    assert evidence.reference_environment_match
+    assert evidence.capacity_margin_met
+    assert {requirement.path for requirement in captured} == {
+        paths.root,
+        paths.pipeline,
+        paths.supervisor,
+    }
+    assert len(captured) == 4
+    for requirement in captured:
+        assert requirement.placement is not None
+        with pytest.raises(ResourcePreflightError, match="closed"):
+            requirement.placement.require_current_identity()
+
+
+def test_default_candidate_preflight__records_reference_mismatch_without_hiding_capacity(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from docmend import scale_qualification
+
+    paths = _preflight_paths(tmp_path)
+    fragment_size = os.statvfs(paths.root).f_frsize
+    observation = ReferenceObservation(
+        environment=_reference().model_copy(update={"cpu_model": "Other synthetic CPU"}),
+        mount_projection=MountFlagProjection(flags=("rw", "relatime"), complete=True),
+        fragment_size=fragment_size,
+    )
+
+    def return_observation(_workspace: Path) -> ReferenceObservation:
+        return observation
+
+    def pass_capacity(_requirements: Iterable[Requirement]) -> CapacityCheck:
+        return _capacity_check(passed=True)
+
+    monkeypatch.setattr(scale_qualification, "observe_reference_environment", return_observation)
+    monkeypatch.setattr(scale_qualification, "check_capacity", pass_capacity)
+
+    evidence = DefaultCandidateRuntime().preflight(
+        paths,
+        summarize_scale_corpus(40, fragment_size=fragment_size),
+        _reference(),
+    )
+
+    assert not evidence.reference_environment_match
+    assert evidence.capacity_margin_met
+    assert not evidence.passed
+
+
+def test_default_candidate_preflight__records_insufficient_capacity(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    from docmend import scale_qualification
+
+    paths = _preflight_paths(tmp_path)
+    fragment_size = os.statvfs(paths.root).f_frsize
+    observation = ReferenceObservation(
+        environment=_reference(),
+        mount_projection=MountFlagProjection(flags=("rw", "relatime"), complete=True),
+        fragment_size=fragment_size,
+    )
+
+    def return_observation(_workspace: Path) -> ReferenceObservation:
+        return observation
+
+    def fail_capacity(_requirements: Iterable[Requirement]) -> CapacityCheck:
+        return _capacity_check(passed=False)
+
+    monkeypatch.setattr(scale_qualification, "observe_reference_environment", return_observation)
+    monkeypatch.setattr(scale_qualification, "check_capacity", fail_capacity)
+
+    evidence = DefaultCandidateRuntime().preflight(
+        paths,
+        summarize_scale_corpus(40, fragment_size=fragment_size),
+        _reference(),
+    )
+
+    assert evidence.reference_environment_match
+    assert evidence.capacity_margin_met
+    assert not evidence.filesystems[0].passed
+    assert not evidence.passed
 
 
 @pytest.mark.parametrize("tier", ["pilot", "scheduled"])
@@ -1184,6 +1348,43 @@ def test_real_execution_seam__uses_four_exact_requests_and_fresh_wrappers(
             assert Path(item.environment[name]).is_relative_to(request.workspace)
     assert not result.reasons
     assert len(result.stages) == 4
+
+
+def test_real_execution_seam__insufficient_preflight_capacity_stops_before_materialization(
+    invocation_paths: dict[str, Path],
+) -> None:
+    class CapacityRefusingRuntime(FakeCandidateRuntime):
+        def preflight(
+            self,
+            paths: QualificationWorkspacePaths,
+            summary: ScaleCorpusSummary,
+            reference: ReferenceEnvironment,
+        ) -> PreflightEvidence:
+            del paths, summary, reference
+            return PreflightEvidence(
+                filesystems=_capacity_check(passed=False).filesystems,
+                capacity_margin_met=True,
+                reference_environment_match=True,
+                binding_filesystem=True,
+                ram_requirement_met=True,
+                passed=False,
+            )
+
+        def materialize(self, path: Path, count: int, *, fragment_size: int) -> ScaleCorpusSummary:
+            del path, count, fragment_size
+            raise AssertionError("capacity refusal must precede corpus materialization")
+
+    result = _execute_real_seam(
+        _request(invocation_paths, diagnostic=True),
+        FakeServices().source,
+        FakeBuilder(),
+        CapacityRefusingRuntime(),
+    )
+
+    assert result.reasons == ("capacity-insufficient",)
+    assert result.preflight is not None
+    assert not result.preflight.filesystems[0].passed
+    assert not result.stages
 
 
 @pytest.mark.parametrize(

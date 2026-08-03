@@ -19,8 +19,7 @@ tags:
 aliases: []
 related:
   - 'docs/specs/docmend.md'
-  - 'docs/superpowers/specs/2026-07-10-safety-core-remediation-design.md'
-  - 'docs/codex-reviews/2026-07-10-2034-comprehensive-review-synthesis.md'
+  - 'docs/designs/2026-07-10-safety-core-remediation-design.md'
   - 'docs/adr/adr-0004-apply-safety-gate-and-preservation.md'
   - 'docs/adr/adr-0005-durable-artifact-schema-contract.md'
   - 'docs/adr/adr-0020-commit-boundary-object-identity.md'
@@ -86,7 +85,7 @@ Confirmed by: adversarial manifest fixtures (mixed root/run, gapped or duplicate
 
 - The header additionally records the run's effective exclude patterns. Plan C review CR-006 requires restore's artifact-destination carve-out to be licensed against the excludes that governed apply, which per-invocation replacement flags make unreconstructable later. Revision note: added 2026-07-11.
 - Supersedes `adr-0006-resume-and-recovery-model`: the plan/manifest/hash triangulation, incremental fsync-per-record NDJSON, and AOF torn-tail rule carry forward; the single-kind intent record, per-record trust, and wall-clock resume ordering do not.
-- The full wire model, adjudication table, and worked apply → interrupted resume → interrupted restore → convergent re-run example live in the approved design: `docs/superpowers/specs/2026-07-10-safety-core-remediation-design.md` (reviewed through five adversarial rounds, F1–F8 closed).
+- The full wire model, adjudication table, and worked apply → interrupted resume → interrupted restore → convergent re-run example live in the approved design: `docs/designs/2026-07-10-safety-core-remediation-design.md` (reviewed through five adversarial rounds, F1–F8 closed).
 - Spec: rev 0.26 — FR-013, FR-014, DR-003, DR-004, IR-008, §12.2/§12.3.
 - Commit-time identity capture is ADR-0020's decision; schema ownership and the compatibility break are recorded against ADR-0005's amended contract.
 - Targets v2.0.0. Revisit if a non-POSIX filesystem or a multi-writer manifest is ever supported.

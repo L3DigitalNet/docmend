@@ -15,10 +15,12 @@ cross-checks the registries mechanically:
      docs/resolved-questions.md or an open OQ- heading in
      docs/open-questions.md, and every settled RQ- record has a §21 row.
      (OQ-N and RQ-N share the number N by convention.)
-  C. Once a §17.3 row's status leaves "Not Started", some file under tests/
-     must mention the requirement ID (convention per Appendix B: a
-     `# spec: FR-001` comment or the bare ID in a test name/docstring).
-     Inert until implementation starts.
+  C. Once a §17.3 row's status leaves "Not Started", its evidence must name
+     at least one existing ``tests/**/*.py`` file and one named file must
+     mention the requirement ID (convention per Appendix B: a `# spec:
+     FR-001` comment or the bare ID in a test name/docstring). This prevents
+     a stale matrix path or an unrelated test mention from supporting a
+     completion claim.
 
 Exit codes: 0 clean · 1 drift found · 2 document layout changed under the
 script (a required heading is missing — fix the script, not the spec).
@@ -27,6 +29,7 @@ Run from CI as `uv run python scripts/check_traceability.py`; an optional
 argument overrides the repo root (used by the tests to point at fixtures).
 """
 
+import ast
 import re
 import sys
 from pathlib import Path
@@ -35,6 +38,10 @@ REQ_ROW = re.compile(r"^\| ((?:FR|NFR|IR|DR)-\d{3}) \|", re.MULTILINE)
 OQ_ROW = re.compile(r"^\| (OQ-\d{3}) \|", re.MULTILINE)
 RQ_ID = re.compile(r"\bRQ-(\d{3})\b")
 OQ_HEADING = re.compile(r"^#{2,4} .*\b(OQ-\d{3})\b", re.MULTILINE)
+TEST_FILE = re.compile(r"\b(tests/[A-Za-z0-9_./-]+\.py)\b")
+TEST_SELECTOR = re.compile(
+    r"\b(tests/[A-Za-z0-9_./-]+\.py)::([A-Za-z_][A-Za-z0-9_]*(?:::[A-Za-z_][A-Za-z0-9_]*)*)"
+)
 
 
 def section(text: str, start: str, end: str, path: Path) -> str:
@@ -53,16 +60,44 @@ def section(text: str, start: str, end: str, path: Path) -> str:
     return text[lo:hi]
 
 
-def trace_rows(sec: str) -> dict[str, str]:
-    """§17.3 rows as {requirement ID: status}. Cells are split on bare '|';
-    §17.3 cells never contain escaped pipes (unlike §7.3 contract cells)."""
-    rows: dict[str, str] = {}
+def trace_rows(sec: str) -> dict[str, tuple[str, str]]:
+    """§17.3 rows as {requirement ID: (evidence, status)}.
+
+    Cells are split on bare '|'; §17.3 cells never contain escaped pipes
+    (unlike §7.3 contract cells).
+    """
+    rows: dict[str, tuple[str, str]] = {}
     for line in sec.splitlines():
         m = REQ_ROW.match(line)
         if m:
             cells = [c.strip() for c in line.strip().strip("|").split("|")]
-            rows[m.group(1)] = cells[-1]
+            rows[m.group(1)] = (cells[1], cells[-1])
     return rows
+
+
+def selector_exists(path: Path, selector: str) -> bool:
+    """Return whether a simple pytest node selector resolves in one test module.
+
+    Matrix prose sometimes abbreviates parametrized selectors with braces. The
+    regex therefore extracts only the explicit ``Class`` or ``Class::method``
+    prefix, while bare file references remain valid evidence.
+    """
+    tree = ast.parse(path.read_text(encoding="utf-8"), filename=str(path))
+    nodes: list[ast.stmt] = tree.body
+    for name in selector.split("::"):
+        node = next(
+            (
+                candidate
+                for candidate in nodes
+                if isinstance(candidate, (ast.ClassDef, ast.FunctionDef, ast.AsyncFunctionDef))
+                and candidate.name == name
+            ),
+            None,
+        )
+        if node is None:
+            return False
+        nodes = node.body if isinstance(node, ast.ClassDef) else []
+    return True
 
 
 def main(root: Path) -> int:
@@ -100,16 +135,26 @@ def main(root: Path) -> int:
             f"question records with no spec §21 row: {sorted('OQ-/RQ-' + n for n in unlisted)}"
         )
 
-    # --- C: §17.3 progress claims <-> tests that name the requirement ---
-    tests_text = "\n".join(
-        p.read_text(encoding="utf-8") for p in sorted((root / "tests").rglob("*.py"))
-    )
-    if started_untested := {
-        rid for rid, status in traced.items() if status != "Not Started" and rid not in tests_text
-    }:
-        drifts.append(
-            f"§17.3 rows claim progress but no test mentions the ID: {sorted(started_untested)}"
-        )
+    # --- C: §17.3 progress claims <-> their named test evidence ---
+    for rid, (evidence, status) in traced.items():
+        if status == "Not Started":
+            continue
+        paths = sorted(set(TEST_FILE.findall(evidence)))
+        if not paths:
+            drifts.append(f"§17.3 {rid} claims progress but names no tests/*.py evidence")
+            continue
+        missing = [path for path in paths if not (root / path).is_file()]
+        if missing:
+            drifts.append(f"§17.3 {rid} names missing test evidence: {missing}")
+            continue
+        requirement_id = re.compile(rf"\b{re.escape(rid)}\b")
+        if not any(
+            requirement_id.search((root / path).read_text(encoding="utf-8")) for path in paths
+        ):
+            drifts.append(f"§17.3 {rid} evidence files do not mention the requirement ID: {paths}")
+        for path, selector in TEST_SELECTOR.findall(evidence):
+            if not selector_exists(root / path, selector):
+                drifts.append(f"§17.3 {rid} names missing test selector: {path}::{selector}")
 
     for d in drifts:
         print(f"DRIFT: {d}")

@@ -326,7 +326,7 @@ _Owner decision (from the OQ-024 AskUserQuestion, 2026-07-06): binding requireme
 
 ### RQ-025..033 — gap-register Batch B decisions (2026-07-06)
 
-**Resolved:** 2026-07-06 **Source questions:** OQ-025..033 (minted from `docs/gap-analysis.md` Batch B triage — the nine decision-bearing gaps that survived the 2026-07-06 status audit) **Decision owner:** owner (two AskUserQuestion rounds plus an individual walkthrough of the GAP-49/GAP-52 research reports, 2026-07-06) **Canonical references:** spec §21 OQ-025..033 rows carry each decision's assumption; the spec body sections listed per item below are the binding text. Recorded together because all nine were settled in one sitting from one triage; split any item out if it is later amended individually.
+**Resolved:** 2026-07-06 **Source questions:** OQ-025..033 (minted from `docs/reviews/gap-analysis.md` Batch B triage — the nine decision-bearing gaps that survived the 2026-07-06 status audit) **Decision owner:** owner (two AskUserQuestion rounds plus an individual walkthrough of the GAP-49/GAP-52 research reports, 2026-07-06) **Canonical references:** spec §21 OQ-025..033 rows carry each decision's assumption; the spec body sections listed per item below are the binding text. Recorded together because all nine were settled in one sitting from one triage; split any item out if it is later amended individually.
 
 **Canonical records (2026-07-06 ADR review):** RQ-032 → [ADR-0015](adr/adr-0015-test-corpus-and-anonymization.md); RQ-025/030/031 → [ADR-0016](adr/adr-0016-mechanical-transform-boundary.md) (consolidated); RQ-026/027/028/033 → amendment notes on ADR-0009 / ADR-0007 / ADR-0007 / ADR-0002 (+ ADR-0013 for the dev deps); RQ-029 stays spec-canonical (§18.2, deliberate skip per `adr/adr-backlog.md`).
 
@@ -369,7 +369,7 @@ _Owner sign-off, 2026-07-07: all three confirmed as implemented (same review app
 
 ### RQ-037 — million-file scale and execution contract for v2.0.0
 
-**Resolved:** 2026-07-11 **Source question:** OQ-037 **Decision owner:** owner **Canonical references:** [approved design](superpowers/specs/2026-07-11-million-file-scale-and-resource-design.md); spec G-006, NFR-001, IR-006, DR-002, FR-019, §§3.1, 8.1, 8.5, 9, 14, 17.2, 17.3, 18.2, 18.5, 19, 20, and 21 OQ-037; [ADR-0022](adr/adr-0022-sequential-million-file-scale-contract.md); amended [ADR-0005](adr/adr-0005-durable-artifact-schema-contract.md).
+**Resolved:** 2026-07-11 **Source question:** OQ-037 **Decision owner:** owner **Canonical references:** [approved design](specs/2026-07-11-million-file-scale-and-resource-design.md); spec G-006, NFR-001, IR-006, DR-002, FR-019, §§3.1, 8.1, 8.5, 9, 14, 17.2, 17.3, 18.2, 18.5, 19, 20, and 21 OQ-037; [ADR-0022](adr/adr-0022-sequential-million-file-scale-contract.md); amended [ADR-0005](adr/adr-0005-durable-artifact-schema-contract.md).
 
 docmend v2.0.0 supports one through 1,000,000 files. Whole-run inventory, plan, report, manifest, and verification metadata may grow linearly with file count, but per-file body content may not accumulate. The complete installed `scan -> plan -> apply --write -> verify --plan` workflow must qualify at 1,000,000 files on the accepted reference environment and complete within 12 hours.
 
