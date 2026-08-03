@@ -3,7 +3,7 @@ schema_version = "1.1"
 catalog = "5"
 release = "5.14.0"
 catalog_digest = "sha256:44dcab2e5f8a7c73e85be5dfea481356e2cfe0a861ba43253440562c7b33f10e"
-config_digest = "sha256:57d3d0bc138a455d40c67859ff869dbe91d780c3b636348de4f5ba0bbc0c59cd"
+config_digest = "sha256:189c66557891d871fb8bde0366bd2d899663731f7d7bff57e80747ff43ea02c9"
 
 [standards.adr]
 requested = "latest"
@@ -52,7 +52,7 @@ requested = "latest"
 resolved = "1.10"
 selection = "stable"
 payload_digest = "sha256:1f397497be8e925d79f46003d7297813a7d02ea7ff0112cf523354e0a4300398"
-effective_config_digest = "sha256:181eb1ecc0497760b8d0e30bc6f2ef1c97e79f0d485055aab838a5a6c663a26b"
+effective_config_digest = "sha256:e0e7c6e2f499671d37cb7d1e491c0b92124f1663d84d2074c38189f97b8064cd"
 
 [[artifacts]]
 path = ".agents/hooks/agent-handoff/session_start.py"
@@ -1095,8 +1095,8 @@ owners = ["python-tooling"]
 versions = { python-tooling = "1.10" }
 provenance = "provider"
 policy = "managed"
-semantic_digest = "sha256:6b46a6c475e54b0f8a85017b67277aaf5f587e8bcb56825f977b64a025600311"
-content_digest = "sha256:4eb06e4618e277148e7969dd140189e758759becdeea2b23bd218186fe69a3e6"
+semantic_digest = "sha256:e9aeb9d96e6c120cc8c18d252235ae23677bae31be6283615c6199be0884d6ca"
+content_digest = "sha256:2fd5c7d857a6903233345cef4ce898774848ac12456692a57c0aff44ddd35690"
 created_container = false
 
 [[artifacts]]

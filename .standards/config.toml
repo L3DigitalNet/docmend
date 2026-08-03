@@ -40,4 +40,4 @@ config = { include_patterns = ["docs/specs/**/*.md"], reference_prefixes = ["DMR
 [standards.python-tooling]
 enabled = true
 version = "latest"
-config = { additional_dev_dependencies = ["allpairspy>=2.5.1", "faker==40.28.1", "hypothesis>=6.156.1", "import-linter>=2.13", "pyfakefs>=6.2.0", "pytest-xdist>=3.8.0"], contract_version = "1.0", workflow_ownership = "consumer-owned" , ci = { performance = true }}
+config = { additional_dev_dependencies = ["allpairspy>=2.5.1", "faker==40.36.0", "hypothesis>=6.156.1", "import-linter>=2.13", "pyfakefs>=6.2.0", "pytest-xdist>=3.8.0"], contract_version = "1.0", workflow_ownership = "consumer-owned" , ci = { performance = true }}
