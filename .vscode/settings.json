@@ -35,5 +35,7 @@
 
 		"**/.coverage": true
 	},
-	"python.analysis.typeCheckingMode": "off"
+	"python.analysis.typeCheckingMode": "off",
+	"[go]": { "editor.defaultFormatter": "golang.go", "editor.formatOnSave": true },
+	"go.toolsManagement.autoUpdate": false
 }
