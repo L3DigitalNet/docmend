@@ -34,10 +34,13 @@ line-length = 100
 src = ["src", "tests"]
 # Directories owned by external programs are never linted/formatted by this standard.
 extend-exclude = [".claude", ".agents", ".codex", ".continue"]
+extend-include = []
 
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP", "SIM", "C4", "PIE", "PTH", "RET", "RUF"]
 ignore = ["E501"]
+extend-ignore = []
+extend-select = []
 
 [tool.ruff.lint.per-file-ignores]
 "tests/**/*.py" = ["S101"]
@@ -104,6 +107,7 @@ typeCheckingMode = "strict"
 pythonVersion = "3.14"
 pythonPlatform = "All"
 failOnWarnings = true
+extraPaths = ["src"]
 
 [tool.pytest.ini_options]
 minversion = "9.0"
