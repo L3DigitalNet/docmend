@@ -506,19 +506,24 @@ def _parse_json_float(value: str) -> float:
     return parsed
 
 
-def _validate_json_unicode(document: object) -> None:
-    pending = [document]
+def _validate_json_document(document: object, *, kind: str) -> None:
+    pending = [(document, 0)]
+    maximum_depth = sys.getrecursionlimit()
     while pending:
-        value = pending.pop()
+        value, depth = pending.pop()
         if type(value) is str:
             _require_unicode_scalar(value, field="JSON string")
         elif type(value) is list:
-            pending.extend(cast("list[object]", value))
+            if depth >= maximum_depth:
+                raise StageContractError(f"{kind} is not valid strict JSON")
+            pending.extend((item, depth + 1) for item in cast("list[object]", value))
         elif type(value) is dict:
+            if depth >= maximum_depth:
+                raise StageContractError(f"{kind} is not valid strict JSON")
             items = cast("dict[str, object]", value)
             for key, item in items.items():
                 _require_unicode_scalar(key, field="JSON object key")
-                pending.append(item)
+                pending.append((item, depth + 1))
 
 
 def _parse_strict_json(raw: str, *, kind: str) -> object:
@@ -534,7 +539,7 @@ def _parse_strict_json(raw: str, *, kind: str) -> object:
         )
     except (RecursionError, ValueError) as exc:
         raise StageContractError(f"{kind} is not valid strict JSON") from exc
-    _validate_json_unicode(document)
+    _validate_json_document(document, kind=kind)
     return document
 
 

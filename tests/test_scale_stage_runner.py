@@ -644,6 +644,24 @@ class TestStageRequestBoundary:
         with pytest.raises(StageContractError, match="strict JSON"):
             load_stage_request(request)
 
+    def test_request_file__decoded_document_above_runtime_nesting_limit_is_a_contract_error(
+        self, tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+    ) -> None:
+        from docmend import scale_stage
+
+        workspace = _private_workspace(tmp_path)
+        request = _write_request(workspace, _request_document())
+        document: object = None
+        for _ in range(sys.getrecursionlimit() + 1):
+            document = [document]
+
+        def return_deep_document(*_args: object, **_kwargs: object) -> object:
+            return document
+
+        monkeypatch.setattr(scale_stage.json, "loads", return_deep_document)
+        with pytest.raises(StageContractError, match="strict JSON"):
+            load_stage_request(request)
+
     @pytest.mark.parametrize("mode", [0o400, 0o640, 0o644])
     def test_request_file__requires_exact_private_mode(self, tmp_path: Path, mode: int) -> None:
         workspace = _private_workspace(tmp_path)
